@@ -49,6 +49,10 @@ public class Category {
 	public AdDomain getAdDomain() {
 		return adDomain;
 	}
+	
+	public void setAdDomain(AdDomain adDomain) {
+		this.adDomain = adDomain;
+	}
 
 	@Override
 	public int hashCode() {

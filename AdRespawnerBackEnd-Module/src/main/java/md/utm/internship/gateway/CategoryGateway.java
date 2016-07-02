@@ -5,9 +5,9 @@ import java.util.List;
 import md.utm.internship.model.Category;
 
 public interface CategoryGateway {
-	List<Category> getAllCategories();
+	List<Category> getAllCategories(Long adDomainId);
 	Category getCategory(Long id);
-	void createCategory(Category category);
-	void updateCategory(Category category);
+	Category createCategory(Category category);
+	Category updateCategory(Category category);
 	void deleteCategory(Long id);
 }

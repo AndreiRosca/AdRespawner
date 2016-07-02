@@ -17,7 +17,7 @@ public class InMemoryAdDomainGateway implements AdDomainGateway {
 	private static AtomicLong idGenerator = new AtomicLong(0);
 	
 	public InMemoryAdDomainGateway() {
-		createAdDomain(new AdDomain("Transport"));
+		createAdDomain(new AdDomain("Computers and Office equipment"));
 		createAdDomain(new AdDomain("Audio-Video-Photo"));
 		createAdDomain(new AdDomain("Business"));
 	}

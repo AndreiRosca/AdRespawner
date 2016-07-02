@@ -2,8 +2,8 @@ package md.utm.internship.service;
 
 import java.util.List;
 
-import org.jvnet.hk2.annotations.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import md.utm.internship.gateway.CategoryGateway;
 import md.utm.internship.model.Category;
@@ -19,8 +19,8 @@ public class BasicCategoryService implements CategoryService {
 	}
 
 	@Override
-	public List<Category> getAllCategories() {
-		return categoryGateway.getAllCategories();
+	public List<Category> getAllCategories(Long adDomainId) {
+		return categoryGateway.getAllCategories(adDomainId);
 	}
 
 	@Override
@@ -29,13 +29,13 @@ public class BasicCategoryService implements CategoryService {
 	}
 
 	@Override
-	public void createCategory(Category category) {
-		categoryGateway.createCategory(category);
+	public Category createCategory(Category category) {
+		return categoryGateway.createCategory(category);
 	}
 
 	@Override
-	public void updateCategory(Category category) {
-		categoryGateway.updateCategory(category);
+	public Category updateCategory(Category category) {
+		return categoryGateway.updateCategory(category);
 	}
 
 	@Override
