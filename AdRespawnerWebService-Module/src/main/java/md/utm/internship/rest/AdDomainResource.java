@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import md.utm.internship.model.AdDomain;
 import md.utm.internship.service.AdDomainService;
+import md.utm.internship.service.CategoryService;
 
 @Path("/adDomains")
 @Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
@@ -23,6 +24,9 @@ public class AdDomainResource {
 
 	@Autowired
 	private AdDomainService adDomainService;
+	
+	@Autowired
+	private CategoryService categoryService;
 
 	@GET
 	public List<AdDomain> getAllAdDomains() {
@@ -56,5 +60,12 @@ public class AdDomainResource {
 	public void deleteAdDomain(@PathParam("id") Long id) {
 		AdDomain adDomain = adDomainService.getAdDomain(id);
 		adDomainService.deleteAdDomain(adDomain);
+	}
+	
+	@Path("{id}/categories")
+	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	public CategoryResource categoryResource(@PathParam("id") Long id) {
+		AdDomain adDomain = adDomainService.getAdDomain(id);
+		return new CategoryResource(adDomain, categoryService);
 	}
 }
