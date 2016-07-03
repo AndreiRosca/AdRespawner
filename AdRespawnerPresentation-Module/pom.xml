@@ -23,6 +23,17 @@
 			<artifactId>spring-web</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>1.10.19</version>
+		</dependency>
 
 		<!-- Servlet API -->
 		<dependency>
@@ -41,6 +52,7 @@
 			<version>1.2</version>
 		</dependency>
 
+		<!-- JSON deserialization utilities -->
 		<dependency>
 			<groupId>org.glassfish.jersey.core</groupId>
 			<artifactId>jersey-client</artifactId>
@@ -52,10 +64,18 @@
 			<version>2.22</version>
 		</dependency>
 
+		<!-- Web service we're consuming -->
 		<dependency>
 			<groupId>md.utm.internship</groupId>
 			<artifactId>AdRespawnerWebService-Module</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 </project>

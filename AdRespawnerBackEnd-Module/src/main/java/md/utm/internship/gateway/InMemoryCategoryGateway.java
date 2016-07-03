@@ -34,6 +34,9 @@ public class InMemoryCategoryGateway implements CategoryGateway {
 		SubCategory s3 = new SubCategory("HDD", third);
 		s3.setId(idGenerator.incrementAndGet());
 		third.getSubCategories().add(s3);
+		SubCategory s32 = new SubCategory("Motherboards", third);
+		s32.setId(idGenerator.incrementAndGet());
+		third.getSubCategories().add(s32);
 		createCategory(third);
 		Category fourth = new Category("Video", adDomainGateway.getAdDomain(2L));
 		SubCategory s4 = new SubCategory("Projectors and Monitors", fourth);

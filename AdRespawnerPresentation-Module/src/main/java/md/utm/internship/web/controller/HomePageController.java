@@ -18,4 +18,8 @@ public class HomePageController {
 		model.addAttribute("adDomainList", adDomainService.getAllAdDomains());
 		return "index";
 	}
+	
+	public void setAdDomainMvcService(AdDomainMvcService adDomainService) {
+		this.adDomainService = adDomainService;
+	}
 }

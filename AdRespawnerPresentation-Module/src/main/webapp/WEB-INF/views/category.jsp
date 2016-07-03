@@ -16,7 +16,9 @@
 			<li>${category.name}
 				<ol>
 				<c:forEach items="${category.subCategories}" var="subCategory">
-					<li><a href="<spring:url value="/ads/${subCategory.id}" />">${subCategory.name}</a></li>
+					<li>
+						<a href="<spring:url value="/ads/${subCategory.id}" />">${subCategory.name}</a>
+					</li>
 				</c:forEach>
 				</ol>
 			</li>
