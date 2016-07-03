@@ -25,12 +25,19 @@ public class AdResourceClient {
 					 .accept(MediaType.APPLICATION_JSON)
 					 .get(new GenericType<List<Ad>>() {});
 	}
+
+	public Ad getAd(Long adId) {
+		return target.path(adId.toString())
+					 .request()
+					 .accept(MediaType.APPLICATION_JSON)
+					 .get(new GenericType<Ad>() {});
+	}
 	
 	public void dispose() {
 		client.close();
 	}
 	
 	public void setAdSubcategoryId(Long subCategoryId) {
-		target = client.target(resourceUrl + "/" + subCategoryId + "/ads");
+		target = client.target(resourceUrl + "/" + subCategoryId + "/ads/");
 	}
 }

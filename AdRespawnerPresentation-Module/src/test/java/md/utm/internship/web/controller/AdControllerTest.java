@@ -33,6 +33,6 @@ public class AdControllerTest {
 		MockMvc mockMvc = standaloneSetup(controller).build();
 		mockMvc.perform(get("/ads/" + adCategoryId))
 			   .andExpect(model().attributeExists("adList"))
-			   .andExpect(view().name("ad"));
+			   .andExpect(view().name("adList"));
 	}
 }

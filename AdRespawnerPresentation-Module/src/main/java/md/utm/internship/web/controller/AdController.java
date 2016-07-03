@@ -17,9 +17,15 @@ public class AdController {
 	private AdMvcService adService;
 
 	@GetMapping
-	public String showAds(Model model, @PathVariable("id") Long id) {
+	public String showAdList(Model model, @PathVariable("id") Long id) {
 		adService.setAdSubResourceId(id);
 		model.addAttribute("adList", adService.getAllAds());
-		return "ad";
+		return "adList";
+	}
+	
+	@RequestMapping("/ad/{id}")
+	public String viewAd(@PathVariable("id") Long id, Model model) {
+		model.addAttribute("ad", adService.getAd(id));
+		return "viewAd";
 	}
 }

@@ -36,6 +36,9 @@ public class InMemoryAdGateway implements AdGateway {
 		second.setSubCategory(s3);
 		first.setSubCategory(s1);
 		createAd(second);
+		Ad third = new Ad("Macbook Pro 2007", "Apple Macbook Pro 2007 with 4GB RAM, Intel core 2 duo processor", new Price(new BigDecimal(3000), Currency.MDL), new Region("Moldova", "Ungheni"));
+		third.setSubCategory(s1);
+		createAd(third);
 	}
 
 	@Override

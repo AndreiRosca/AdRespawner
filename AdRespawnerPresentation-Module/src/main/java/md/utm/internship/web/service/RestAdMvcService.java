@@ -22,4 +22,9 @@ public class RestAdMvcService implements AdMvcService {
 	public void setAdSubResourceId(Long adSubResourceId) {
 		adResourceClient.setAdSubcategoryId(adSubResourceId);
 	}
+
+	@Override
+	public Ad getAd(Long adId) {
+		return adResourceClient.getAd(adId);
+	}
 }
