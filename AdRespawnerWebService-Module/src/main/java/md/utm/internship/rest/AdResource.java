@@ -48,7 +48,8 @@ public class AdResource {
 	}
 	
 	@DELETE
-	public void deleteAd(Long adId) {
+	@Path("{adId}")
+	public void deleteAd(@PathParam("adId") Long adId) {
 		adService.deleteAd(adId);
 	}
 }
