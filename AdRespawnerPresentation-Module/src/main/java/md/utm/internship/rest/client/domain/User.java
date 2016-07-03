@@ -6,10 +6,6 @@ import java.util.Set;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-import md.utm.internship.model.Contact;
-import md.utm.internship.model.Photo;
-import md.utm.internship.model.Sex;
-
 @XmlRootElement
 public class User {
 

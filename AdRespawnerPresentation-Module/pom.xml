@@ -64,13 +64,6 @@
 			<version>2.22</version>
 		</dependency>
 
-		<!-- Web service we're consuming -->
-		<dependency>
-			<groupId>md.utm.internship</groupId>
-			<artifactId>AdRespawnerWebService-Module</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
