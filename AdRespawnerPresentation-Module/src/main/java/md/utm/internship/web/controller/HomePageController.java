@@ -10,15 +10,11 @@ import md.utm.internship.web.service.AdDomainMvcService;
 @Controller
 public class HomePageController {
 	
-	private AdDomainMvcService adDomainService;
-	
 	@Autowired
-	public HomePageController(AdDomainMvcService adDomainService) {
-		this.adDomainService = adDomainService;
-	}
+	private AdDomainMvcService adDomainService;
 
 	@RequestMapping(value = "/")
-	public String hello(Model model) {
+	public String mainPage(Model model) {
 		model.addAttribute("adDomainList", adDomainService.getAllAdDomains());
 		return "index";
 	}

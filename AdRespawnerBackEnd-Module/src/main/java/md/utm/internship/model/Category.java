@@ -13,9 +13,6 @@ public class Category {
 
 	private Long id;
 	private String name;
-	
-	@XmlTransient
-	@JsonIgnore
 	private List<SubCategory> subCategories = new ArrayList<>();
 	
 	@XmlTransient

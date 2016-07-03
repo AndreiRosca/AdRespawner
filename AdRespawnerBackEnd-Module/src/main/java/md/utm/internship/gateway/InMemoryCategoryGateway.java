@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import md.utm.internship.model.Category;
+import md.utm.internship.model.SubCategory;
 
 @Repository
 public class InMemoryCategoryGateway implements CategoryGateway {
@@ -19,10 +20,26 @@ public class InMemoryCategoryGateway implements CategoryGateway {
 	
 	@Autowired
 	public InMemoryCategoryGateway(AdDomainGateway adDomainGateway) {
-		createCategory(new Category("Computers", adDomainGateway.getAdDomain(1L)));
-		createCategory(new Category("Laptops", adDomainGateway.getAdDomain(1L)));
-		createCategory(new Category("Components", adDomainGateway.getAdDomain(1L)));
-		createCategory(new Category("Video", adDomainGateway.getAdDomain(2L)));
+		Category first = new Category("Computers", adDomainGateway.getAdDomain(1L));
+		SubCategory s1 = new SubCategory("Laptops", first);
+		s1.setId(idGenerator.incrementAndGet());
+		first.getSubCategories().add(s1);
+		createCategory(first);
+		Category second = new Category("Software", adDomainGateway.getAdDomain(1L));
+		SubCategory s2 = new SubCategory("Software", second);
+		s2.setId(idGenerator.incrementAndGet());
+		second.getSubCategories().add(s2);
+		createCategory(second);
+		Category third = new Category("Components", adDomainGateway.getAdDomain(1L));
+		SubCategory s3 = new SubCategory("HDD", third);
+		s3.setId(idGenerator.incrementAndGet());
+		third.getSubCategories().add(s3);
+		createCategory(third);
+		Category fourth = new Category("Video", adDomainGateway.getAdDomain(2L));
+		SubCategory s4 = new SubCategory("Projectors and Monitors", fourth);
+		s4.setId(idGenerator.incrementAndGet());
+		fourth.getSubCategories().add(s4);
+		createCategory(fourth);
 	}
 
 	@Override

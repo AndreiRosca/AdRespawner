@@ -1,21 +1,17 @@
 package md.utm.internship.rest.client;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class Category {
+public class SubCategory {
 
 	private Long id;
 	private String name;
-	private List<SubCategory> subCategories = new ArrayList<>();
 
-	public Category() {
+	public SubCategory() {
 	}
 
-	public Category(Long id, String name) {
+	public SubCategory(Long id, String name) {
 		this.id = id;
 		this.name = name;
 	}
@@ -24,24 +20,8 @@ public class Category {
 		return id;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 	public String getName() {
 		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public List<SubCategory> getSubCategories() {
-		return subCategories;
-	}
-
-	public void setSubCategories(List<SubCategory> subCategories) {
-		this.subCategories = subCategories;
 	}
 
 	@Override
@@ -61,7 +41,7 @@ public class Category {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Category other = (Category) obj;
+		SubCategory other = (SubCategory) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -77,6 +57,6 @@ public class Category {
 
 	@Override
 	public String toString() {
-		return "Category [id=" + id + ", name=" + name + "]";
+		return "SubCategory [id=" + id + ", name=" + name + "]";
 	}
 }

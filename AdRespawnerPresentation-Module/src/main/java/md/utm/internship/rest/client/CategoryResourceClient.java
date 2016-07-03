@@ -13,9 +13,10 @@ public class CategoryResourceClient {
 
 	private Client client = ClientBuilder.newClient();
 	private WebTarget target;
+	private String categoryResourceUrl;
 	
 	public CategoryResourceClient(String categoryResourceUrl) {
-		target = client.target(categoryResourceUrl);
+		this.categoryResourceUrl = categoryResourceUrl;
 	}
 	
 	public List<Category> getAllCategories() {
@@ -57,5 +58,9 @@ public class CategoryResourceClient {
 	
 	public void dispose() {
 		client.close();
+	}
+
+	public void setAdDomainId(Long adDomainId) {
+		target = client.target(categoryResourceUrl + "/" + adDomainId);
 	}
 }

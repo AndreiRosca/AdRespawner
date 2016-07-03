@@ -5,11 +5,11 @@ import java.util.List;
 import md.utm.internship.rest.client.AdDomain;
 import md.utm.internship.rest.client.AdDomainResourceClient;
 
-public class BasicAdDomainMvcService implements AdDomainMvcService {
+public class RestAdDomainMvcService implements AdDomainMvcService {
 	
 	private AdDomainResourceClient adDomainClient;
 	
-	public BasicAdDomainMvcService(AdDomainResourceClient adDomainClient) {
+	public RestAdDomainMvcService(AdDomainResourceClient adDomainClient) {
 		this.adDomainClient = adDomainClient;
 	}
 

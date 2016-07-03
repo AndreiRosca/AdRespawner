@@ -1,19 +1,21 @@
 package md.utm.internship.model;
 
+import java.math.BigDecimal;
+
 public class Price {
 
-	private long amount;
+	private BigDecimal amount;
 	private Currency currency;
 
 	public Price() {
 	}
 
-	public Price(long amount, Currency currency) {
+	public Price(BigDecimal amount, Currency currency) {
 		this.amount = amount;
 		this.currency = currency;
 	}
 
-	public long getAmount() {
+	public BigDecimal getAmount() {
 		return amount;
 	}
 
@@ -25,7 +27,7 @@ public class Price {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (amount ^ (amount >>> 32));
+		result = prime * result + ((amount == null) ? 0 : amount.hashCode());
 		result = prime * result + ((currency == null) ? 0 : currency.hashCode());
 		return result;
 	}
@@ -39,7 +41,10 @@ public class Price {
 		if (getClass() != obj.getClass())
 			return false;
 		Price other = (Price) obj;
-		if (amount != other.amount)
+		if (amount == null) {
+			if (other.amount != null)
+				return false;
+		} else if (!amount.equals(other.amount))
 			return false;
 		if (currency != other.currency)
 			return false;

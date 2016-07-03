@@ -8,8 +8,11 @@ import org.springframework.context.annotation.FilterType;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import md.utm.internship.rest.client.AdDomainResourceClient;
+import md.utm.internship.rest.client.CategoryResourceClient;
 import md.utm.internship.web.service.AdDomainMvcService;
-import md.utm.internship.web.service.BasicAdDomainMvcService;
+import md.utm.internship.web.service.CategoryMvcService;
+import md.utm.internship.web.service.RestAdDomainMvcService;
+import md.utm.internship.web.service.RestCategoryMvcService;
 
 @Configuration
 @ComponentScan(basePackages = "md.utm.internship", 
@@ -25,6 +28,18 @@ public class RootConfiguration {
 	
 	@Bean
 	public AdDomainMvcService adDomainMvcService(AdDomainResourceClient client) {
-		return new BasicAdDomainMvcService(client);
+		return new RestAdDomainMvcService(client);
+	}
+	
+	@Bean(destroyMethod = "dispose")
+	public CategoryResourceClient categoryResourceClient() {
+		String resourceUrl = "http://localhost:8080/AdRespawnerWebService-Module/rest/adDomains";
+		CategoryResourceClient client = new CategoryResourceClient(resourceUrl);
+		return client;
+	}
+	
+	@Bean
+	public CategoryMvcService categoryMvcService(CategoryResourceClient categoryResource) {
+		return new RestCategoryMvcService(categoryResource);
 	}
 }
