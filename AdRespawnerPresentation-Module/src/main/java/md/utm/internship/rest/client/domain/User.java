@@ -1,8 +1,8 @@
-package md.utm.internship.model;
+package md.utm.internship.rest.client.domain;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class Photo {
+public class User {
 
 }

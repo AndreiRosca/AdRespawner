@@ -20,6 +20,7 @@
 		</jaxrs:providers>
 		<jaxrs:serviceBeans>
 			<ref bean="adDomainResource" />
+			<ref bean="restAdResource" />
 		</jaxrs:serviceBeans>
 		<jaxrs:extensionMappings>
 			<entry key="xml" value="application/xml" />
@@ -28,5 +29,6 @@
 	</jaxrs:server>
 
 	<bean id="adDomainResource" class="md.utm.internship.rest.AdDomainResource" />
+	<bean id="restAdResource" class="md.utm.internship.rest.AdResource" />
 
 </beans>

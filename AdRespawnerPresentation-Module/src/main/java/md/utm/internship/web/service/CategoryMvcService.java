@@ -2,7 +2,7 @@ package md.utm.internship.web.service;
 
 import java.util.List;
 
-import md.utm.internship.rest.client.Category;
+import md.utm.internship.rest.client.domain.Category;
 
 public interface CategoryMvcService {
 	List<Category> getAllCategories();

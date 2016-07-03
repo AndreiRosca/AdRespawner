@@ -11,6 +11,13 @@
 <body>
 	<h1>Welcome to AdRespawner!</h1>
 	<h4>Ads</h4>
-	${adList}
+	<c:forEach items="${adList}" var="ad">
+		<div>
+			<p>${ad.title}</p>
+			<p>${ad.description}</p>
+			<p>${ad.region.country}, ${ad.region.municipality}</p>
+			<p>${ad.price.amount} ${ad.price.currency}</p>
+		</div>
+	</c:forEach>
 </body>
 </html>

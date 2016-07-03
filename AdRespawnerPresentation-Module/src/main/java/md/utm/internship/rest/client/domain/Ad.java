@@ -1,4 +1,4 @@
-package md.utm.internship.model;
+package md.utm.internship.rest.client.domain;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -6,9 +6,15 @@ import java.util.List;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+import md.utm.internship.rest.client.domain.AdCharacteristic;
+import md.utm.internship.rest.client.domain.Photo;
+import md.utm.internship.rest.client.domain.Price;
+import md.utm.internship.rest.client.domain.Region;
+import md.utm.internship.rest.client.domain.SubCategory;
+import md.utm.internship.rest.client.domain.User;
+
 @XmlRootElement
 public class Ad {
-
 	private Long id;
 	private String title;
 	private String description;
@@ -23,11 +29,12 @@ public class Ad {
 	public Ad() {
 	}
 
-	public Ad(String title, String description, Price price, Region region) {
+	public Ad(String title, String description, Price price, Region region, SubCategory subCategory) {
 		this.title = title;
 		this.description = description;
 		this.price = price;
 		this.region = region;
+		this.subCategory = subCategory;
 	}
 
 	public Long getId() {
@@ -114,10 +121,12 @@ public class Ad {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((adAuthor == null) ? 0 : adAuthor.hashCode());
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((postingDate == null) ? 0 : postingDate.hashCode());
+		result = prime * result + ((price == null) ? 0 : price.hashCode());
+		result = prime * result + ((region == null) ? 0 : region.hashCode());
+		result = prime * result + ((subCategory == null) ? 0 : subCategory.hashCode());
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
 		return result;
 	}
@@ -131,11 +140,6 @@ public class Ad {
 		if (getClass() != obj.getClass())
 			return false;
 		Ad other = (Ad) obj;
-		if (adAuthor == null) {
-			if (other.adAuthor != null)
-				return false;
-		} else if (!adAuthor.equals(other.adAuthor))
-			return false;
 		if (description == null) {
 			if (other.description != null)
 				return false;
@@ -151,6 +155,21 @@ public class Ad {
 				return false;
 		} else if (!postingDate.equals(other.postingDate))
 			return false;
+		if (price == null) {
+			if (other.price != null)
+				return false;
+		} else if (!price.equals(other.price))
+			return false;
+		if (region == null) {
+			if (other.region != null)
+				return false;
+		} else if (!region.equals(other.region))
+			return false;
+		if (subCategory == null) {
+			if (other.subCategory != null)
+				return false;
+		} else if (!subCategory.equals(other.subCategory))
+			return false;
 		if (title == null) {
 			if (other.title != null)
 				return false;
@@ -161,7 +180,6 @@ public class Ad {
 
 	@Override
 	public String toString() {
-		return "Ad [id=" + id + ", title=" + title + ", description=" + description + ", postingDate=" + postingDate
-				+ ", adAuthor=" + adAuthor + "]";
+		return "Ad [id=" + id + ", title=" + title + ", postingDate=" + postingDate + ", adAuthor=" + adAuthor + "]";
 	}
 }

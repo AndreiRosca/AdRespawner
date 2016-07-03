@@ -9,6 +9,8 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 
+import md.utm.internship.rest.client.domain.AdDomain;
+
 public class AdDomainResourceClient {
 
 	private Client client = ClientBuilder.newClient();

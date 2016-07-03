@@ -22,25 +22,25 @@ public class InMemoryCategoryGateway implements CategoryGateway {
 	public InMemoryCategoryGateway(AdDomainGateway adDomainGateway) {
 		Category first = new Category("Computers", adDomainGateway.getAdDomain(1L));
 		SubCategory s1 = new SubCategory("Laptops", first);
-		s1.setId(idGenerator.incrementAndGet());
+		s1.setId(40L);
 		first.getSubCategories().add(s1);
 		createCategory(first);
 		Category second = new Category("Software", adDomainGateway.getAdDomain(1L));
 		SubCategory s2 = new SubCategory("Software", second);
-		s2.setId(idGenerator.incrementAndGet());
+		s2.setId(41L);
 		second.getSubCategories().add(s2);
 		createCategory(second);
 		Category third = new Category("Components", adDomainGateway.getAdDomain(1L));
 		SubCategory s3 = new SubCategory("HDD", third);
-		s3.setId(idGenerator.incrementAndGet());
+		s3.setId(42L);
 		third.getSubCategories().add(s3);
 		SubCategory s32 = new SubCategory("Motherboards", third);
-		s32.setId(idGenerator.incrementAndGet());
+		s32.setId(43L);
 		third.getSubCategories().add(s32);
 		createCategory(third);
 		Category fourth = new Category("Video", adDomainGateway.getAdDomain(2L));
 		SubCategory s4 = new SubCategory("Projectors and Monitors", fourth);
-		s4.setId(idGenerator.incrementAndGet());
+		s4.setId(44L);
 		fourth.getSubCategories().add(s4);
 		createCategory(fourth);
 	}

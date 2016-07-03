@@ -2,8 +2,8 @@ package md.utm.internship.web.service;
 
 import java.util.List;
 
-import md.utm.internship.rest.client.Category;
 import md.utm.internship.rest.client.CategoryResourceClient;
+import md.utm.internship.rest.client.domain.Category;
 
 public class RestCategoryMvcService implements CategoryMvcService {
 

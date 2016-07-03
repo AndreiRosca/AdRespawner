@@ -27,7 +27,7 @@ public class AdDomainResource {
 	
 	@Autowired
 	private CategoryService categoryService;
-
+	
 	@GET
 	public List<AdDomain> getAllAdDomains() {
 		return adDomainService.getAllAdDomains();

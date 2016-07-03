@@ -2,8 +2,8 @@ package md.utm.internship.web.service;
 
 import java.util.List;
 
-import md.utm.internship.rest.client.AdDomain;
 import md.utm.internship.rest.client.AdDomainResourceClient;
+import md.utm.internship.rest.client.domain.AdDomain;
 
 public class RestAdDomainMvcService implements AdDomainMvcService {
 	
