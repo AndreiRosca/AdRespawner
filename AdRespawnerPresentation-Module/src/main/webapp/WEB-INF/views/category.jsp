@@ -24,5 +24,6 @@
 			</li>
 		</c:forEach>
 	</ul>
+	<a href="<spring:url value="/" />">Back</a>
 </body>
 </html>

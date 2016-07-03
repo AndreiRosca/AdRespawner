@@ -18,5 +18,6 @@
 			<p>${ad.price.amount} ${ad.price.currency}</p>
 		</div>
 	</c:forEach>
+	<a href="#">Back</a>
 </body>
 </html>

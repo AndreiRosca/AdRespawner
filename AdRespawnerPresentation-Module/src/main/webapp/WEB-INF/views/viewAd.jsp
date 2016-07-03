@@ -20,7 +20,11 @@
 			<img src="<spring:url value="${photo.fileSystemPath}" />" width="300" height="100" alt="Photo" />
 		</a>
 	</c:forEach>
-	
+	<br/>
+	<h5>Contacts</h5>
+	<c:forEach items="${ad.adAuthor.contacts}" var="contact">
+		<p>${contact.countryCode} ${contact.phoneNumber}</p>
+	</c:forEach>
 	<a href="<spring:url value="/ads/${ad.subCategory.id}" />">Back</a>
 </body>
 </html>

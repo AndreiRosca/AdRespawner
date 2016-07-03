@@ -2,8 +2,15 @@ package md.utm.internship.model;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@XmlRootElement
 public class User {
 
 	private Long id;
@@ -14,10 +21,19 @@ public class User {
 	private String lastName;
 	private Date birthDate;
 	private Sex sex;
-	private Set<Contact> contacts = new HashSet<>();
+	private Set<Contact> contacts = new LinkedHashSet<>();
+	
+	@XmlTransient
+	@JsonIgnore
 	private Set<Message> receivedMessages = new HashSet<>();
+	
+	@XmlTransient
+	@JsonIgnore
 	private Set<Message> sentMessages = new HashSet<>();
 	private Photo photo;
+	
+	@XmlTransient
+	@JsonIgnore
 	private Set<Ad> postedAds = new HashSet<>();
 
 	public User() {

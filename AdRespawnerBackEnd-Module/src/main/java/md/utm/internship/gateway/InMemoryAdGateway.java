@@ -10,11 +10,13 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Repository;
 
 import md.utm.internship.model.Ad;
+import md.utm.internship.model.Contact;
 import md.utm.internship.model.Currency;
 import md.utm.internship.model.Photo;
 import md.utm.internship.model.Price;
 import md.utm.internship.model.Region;
 import md.utm.internship.model.SubCategory;
+import md.utm.internship.model.User;
 
 @Repository
 public class InMemoryAdGateway implements AdGateway {
@@ -42,6 +44,12 @@ public class InMemoryAdGateway implements AdGateway {
 		createAd(third);
 		third.getPhotos().add(new Photo("/resources/images/macbook.png"));
 		third.getPhotos().add(new Photo("/resources/images/macbook2.jpg"));
+		User user = new User("mike@gmail.com", "mike", "p@sswd");
+		user.getContacts().add(new Contact("+373", "69952044"));
+		user.getContacts().add(new Contact("+373", "022467911"));
+		third.setAdAuthor(user);
+		first.setAdAuthor(user);
+		second.setAdAuthor(user);
 	}
 
 	@Override
