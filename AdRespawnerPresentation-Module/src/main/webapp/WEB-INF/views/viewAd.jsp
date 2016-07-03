@@ -15,6 +15,12 @@
 	<p>${ad.description}</p>
 	<p>${ad.region.country}, ${ad.region.municipality}</p>
 	<p>${ad.price.amount} ${ad.price.currency}</p>
+	<c:forEach items="${ad.photos}" var="photo">
+		<a href="<spring:url value="${photo.fileSystemPath}" />">
+			<img src="<spring:url value="${photo.fileSystemPath}" />" width="300" height="100" alt="Photo" />
+		</a>
+	</c:forEach>
+	
 	<a href="<spring:url value="/ads/${ad.subCategory.id}" />">Back</a>
 </body>
 </html>

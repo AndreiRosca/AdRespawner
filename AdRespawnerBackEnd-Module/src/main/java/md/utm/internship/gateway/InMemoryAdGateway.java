@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import md.utm.internship.model.Ad;
 import md.utm.internship.model.Currency;
+import md.utm.internship.model.Photo;
 import md.utm.internship.model.Price;
 import md.utm.internship.model.Region;
 import md.utm.internship.model.SubCategory;
@@ -39,6 +40,8 @@ public class InMemoryAdGateway implements AdGateway {
 		Ad third = new Ad("Macbook Pro 2007", "Apple Macbook Pro 2007 with 4GB RAM, Intel core 2 duo processor", new Price(new BigDecimal(3000), Currency.MDL), new Region("Moldova", "Ungheni"));
 		third.setSubCategory(s1);
 		createAd(third);
+		third.getPhotos().add(new Photo("/resources/images/macbook.png"));
+		third.getPhotos().add(new Photo("/resources/images/macbook2.jpg"));
 	}
 
 	@Override
