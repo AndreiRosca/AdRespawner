@@ -26,4 +26,8 @@ public class CategoryController {
 		model.addAttribute("categoryList", categoryService.getAllCategories());
 		return "category";
 	}
+	
+	public void setCategoryMvcService(CategoryMvcService categoryService) {
+		this.categoryService = categoryService;
+	}
 }
