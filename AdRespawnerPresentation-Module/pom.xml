@@ -7,9 +7,22 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>AdRespawnerPresentation-Module</artifactId>
+	<packaging>war</packaging>
 	<properties>
 		<spring.version>4.3.0.RELEASE</spring.version>
 	</properties>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 	<dependencies>
 
 		<!-- Spring framework -->
@@ -50,6 +63,13 @@
 			<groupId>jstl</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
+		</dependency>
+
+		<!-- For validating form beans -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>5.2.4.Final</version>
 		</dependency>
 
 		<!-- JSON deserialization utilities -->

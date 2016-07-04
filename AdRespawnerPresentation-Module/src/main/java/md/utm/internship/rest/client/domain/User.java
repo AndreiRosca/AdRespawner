@@ -4,14 +4,27 @@ import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import org.hibernate.validator.constraints.Email;
 
 @XmlRootElement
 public class User {
 
 	private Long id;
+	
+	@Email
+	@Size(min = 6)
 	private String email;
+	
+	@NotNull
+	@Size(min = 2, max = 50)
 	private String login;
+	
+	@NotNull
+	@Size(min = 4, max = 50)
 	private String password;
 	private String firstName;
 	private String lastName;
