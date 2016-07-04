@@ -15,12 +15,20 @@
 	<p>${ad.description}</p>
 	<p>${ad.region.country}, ${ad.region.municipality}</p>
 	<p>${ad.price.amount} ${ad.price.currency}</p>
+	
 	<c:forEach items="${ad.photos}" var="photo">
 		<a href="<spring:url value="${photo.fileSystemPath}" />">
 			<img src="<spring:url value="${photo.fileSystemPath}" />" width="300" height="100" alt="Photo" />
 		</a>
 	</c:forEach>
 	<br/>
+	
+	<h3>Characteristics</h3>
+	<c:forEach items="${ad.characteristics}" var="characteristic">
+		<p>${characteristic.name} -> ${characteristic.value}</p>
+	</c:forEach>
+	<br/>
+	
 	<h5>Contacts</h5>
 	<c:forEach items="${ad.adAuthor.contacts}" var="contact">
 		<p>${contact.countryCode} ${contact.phoneNumber}</p>

@@ -44,8 +44,29 @@ public class UserController {
 		return "redirect:/users/{userId}";
 	}
 	
-	@InitBinder
+	@InitBinder(value = "user")
 	public void initBinding(WebDataBinder webDataBinder) {
 		webDataBinder.setAllowedFields("login", "password", "email");
+	}
+	
+	@RequestMapping(value = "/users/{userId}/edit", method = RequestMethod.GET)
+	public String showProfileEditPage(@PathVariable("userId") Long userId, Model model) {
+		model.addAttribute("editedUser", userService.getUser(userId));
+		return "editUserProfile";
+	}
+	
+	@RequestMapping(value = "/users/{userId}/edit", method = RequestMethod.POST)
+	public String editUser(@PathVariable("userId") Long id, @ModelAttribute("editedUser") @Valid User user, BindingResult bindingResult, Model model) {
+		user.setId(id);
+		user = userService.updateUser(user);
+		model.addAttribute("userId", user.getId());
+		return "redirect:/users/{userId}";
+	}
+	
+	@InitBinder(value = "editedUser")
+	public void setUpUserEditBinding(WebDataBinder webDataBinder) {
+		String[] allowedFields = { "password", "email", "sex", "firstName", "lastName", 
+				"birthDate", "contacts", "photo" };
+		webDataBinder.setAllowedFields(allowedFields);
 	}
 }

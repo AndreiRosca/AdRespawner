@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Repository;
 
 import md.utm.internship.model.Ad;
+import md.utm.internship.model.AdCharacteristic;
 import md.utm.internship.model.Contact;
 import md.utm.internship.model.Currency;
 import md.utm.internship.model.Photo;
@@ -17,6 +18,8 @@ import md.utm.internship.model.Price;
 import md.utm.internship.model.Region;
 import md.utm.internship.model.SubCategory;
 import md.utm.internship.model.User;
+import md.utm.internship.model.characteristics.LaptopManufacturer;
+import md.utm.internship.model.characteristics.OfferType;
 
 @Repository
 public class InMemoryAdGateway implements AdGateway {
@@ -50,6 +53,8 @@ public class InMemoryAdGateway implements AdGateway {
 		third.setAdAuthor(user);
 		first.setAdAuthor(user);
 		second.setAdAuthor(user);
+		third.getCharacteristics().add(new AdCharacteristic("Manufacturer", LaptopManufacturer.APPLE));
+		third.getCharacteristics().add(new AdCharacteristic("Offer type", OfferType.SELL));
 	}
 
 	@Override

@@ -23,6 +23,6 @@
 	<c:forEach items="${user.contacts}" var="contact">
 		<p>${contact.countryCode} ${contact.phoneNumber}</p>
 	</c:forEach>
-	<a href="#">Back</a>
+	<a href="<spring:url value="/users/${user.id}/edit" />">Edit</a>
 </body>
 </html>
