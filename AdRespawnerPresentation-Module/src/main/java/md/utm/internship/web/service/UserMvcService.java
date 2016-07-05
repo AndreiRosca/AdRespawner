@@ -2,6 +2,7 @@ package md.utm.internship.web.service;
 
 import java.util.List;
 
+import md.utm.internship.rest.client.domain.Photo;
 import md.utm.internship.rest.client.domain.User;
 
 public interface UserMvcService {
@@ -10,4 +11,5 @@ public interface UserMvcService {
 	User createUser(User user);
 	User updateUser(User user);
 	void deleteUser(Long userId);
+	Photo moveUploadedUserPhoto(User user, String targetFolder);
 }

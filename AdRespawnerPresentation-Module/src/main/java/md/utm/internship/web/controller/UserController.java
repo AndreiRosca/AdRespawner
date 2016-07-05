@@ -1,5 +1,6 @@
 package md.utm.internship.web.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import md.utm.internship.rest.client.domain.Photo;
 import md.utm.internship.rest.client.domain.User;
 import md.utm.internship.web.service.UserMvcService;
 
@@ -56,7 +58,15 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/users/{userId}/edit", method = RequestMethod.POST)
-	public String editUser(@PathVariable("userId") Long id, @ModelAttribute("editedUser") @Valid User user, BindingResult bindingResult, Model model) {
+	public String editUser(@PathVariable("userId") Long id, @ModelAttribute("editedUser") @Valid User user, 
+			BindingResult bindingResult, Model model, HttpServletRequest request) {
+		/*if (bindingResult.hasErrors()) {
+			System.out.println(bindingResult.getFieldErrors());
+			return "editUserProfile";
+		}*/
+		String imagePath = request.getServletContext().getRealPath("/");
+		Photo userPhoto = userService.moveUploadedUserPhoto(user, imagePath);
+		user.setPhoto(userPhoto);
 		user.setId(id);
 		user = userService.updateUser(user);
 		model.addAttribute("userId", user.getId());
@@ -65,8 +75,8 @@ public class UserController {
 	
 	@InitBinder(value = "editedUser")
 	public void setUpUserEditBinding(WebDataBinder webDataBinder) {
-		String[] allowedFields = { "password", "email", "sex", "firstName", "lastName", 
-				"birthDate", "contacts", "photo" };
+		String[] allowedFields = { "email", "firstName", "lastName", 
+				"birthDate", "userPhotoFile" };
 		webDataBinder.setAllowedFields(allowedFields);
 	}
 }

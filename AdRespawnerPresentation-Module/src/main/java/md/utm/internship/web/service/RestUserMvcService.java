@@ -1,8 +1,11 @@
 package md.utm.internship.web.service;
 
+import java.io.File;
+import java.util.Date;
 import java.util.List;
 
 import md.utm.internship.rest.client.UserResourceClient;
+import md.utm.internship.rest.client.domain.Photo;
 import md.utm.internship.rest.client.domain.User;
 
 public class RestUserMvcService implements UserMvcService {
@@ -36,5 +39,18 @@ public class RestUserMvcService implements UserMvcService {
 	@Override
 	public void deleteUser(Long userId) {
 		userResourceClient.deleteUser(userId);
+	}
+
+	@Override
+	public Photo moveUploadedUserPhoto(User user, String targetFolder) {
+		try {
+			String fileName = new Date().getTime() + "_" + user.getUserPhotoFile().getOriginalFilename();
+			String relativePath = "/resources/images/" + fileName;
+			File userPhotoPath = new File(targetFolder + relativePath);
+			user.getUserPhotoFile().transferTo(userPhotoPath);
+			return new Photo(relativePath);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 	}
 }

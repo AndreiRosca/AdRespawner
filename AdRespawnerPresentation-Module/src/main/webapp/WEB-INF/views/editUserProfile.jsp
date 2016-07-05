@@ -13,7 +13,7 @@
 <body>
 	<h4>Edit user profile</h4>
 	<spring:url value="/users/${editedUser.id}/edit" var="formTargetUrl" />
-	<form:form method="post" action="${formTargetUrl}" modelAttribute="editedUser">
+	<form:form method="post" action="${formTargetUrl}" modelAttribute="editedUser" enctype="multipart/form-data">
 		<fieldset>
 			<legend>Edit user</legend>
 			<label for="firstName">First Name:</label>
@@ -22,10 +22,10 @@
 			<form:input path="lastName" id="lastName" /><br/>
 			<label for="email">Email:</label>
 			<form:input path="email" id="email" /><br/>
-			<label for="sex">Sex:</label>
-			<form:select path="sex" /><br/>
 			<label for="birthDate">Birth date:</label>
 			<form:input path="birthDate" id="birthdate" /><br/>
+			<label for="profilePhoto">Profile photo:</label>
+			<form:input id="profilePhoto" path="userPhotoFile" type="file" />
 			<input type="submit" value="Edit" />
 		</fieldset>
 	</form:form>
