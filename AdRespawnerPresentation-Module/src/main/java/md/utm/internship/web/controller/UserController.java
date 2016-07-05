@@ -73,6 +73,7 @@ public class UserController {
 		}
 		user.setId(id);
 		user = userService.updateUser(user);
+		System.out.println(user.getContacts());
 		model.addAttribute("userId", user.getId());
 		return "redirect:/users/{userId}";
 	}

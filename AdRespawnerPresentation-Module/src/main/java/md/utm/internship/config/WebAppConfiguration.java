@@ -1,8 +1,13 @@
 package md.utm.internship.config;
 
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ConversionServiceFactoryBean;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
@@ -10,6 +15,8 @@ import org.springframework.web.servlet.config.annotation.DefaultServletHandlerCo
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+
+import md.utm.internship.web.converter.StringToContactConverter;
 
 @Configuration
 @EnableWebMvc
@@ -30,6 +37,14 @@ public class WebAppConfiguration extends WebMvcConfigurerAdapter {
 		CommonsMultipartResolver resolver = new CommonsMultipartResolver();
 		resolver.setMaxUploadSize(-1);
 		return resolver;
+	}
+	
+	@Bean(name = "conversionService")
+	public ConversionServiceFactoryBean conversionServiceFactoryBean() {
+		ConversionServiceFactoryBean conversionService = new ConversionServiceFactoryBean();
+		Set<?> converters = Stream.of(new StringToContactConverter()).collect(Collectors.toSet());
+		conversionService.setConverters(converters);
+		return conversionService;
 	}
 	
 	@Override

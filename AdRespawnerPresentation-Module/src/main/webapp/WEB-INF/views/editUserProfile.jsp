@@ -28,8 +28,20 @@
 			<form:select path="sex" items="${sexSelectValues}" id="sex" /><br/>
 			<label for="profilePhoto">Profile photo:</label>
 			<form:input id="profilePhoto" path="userPhotoFile" type="file" />
+			
+			<label>Contacts:</label>
+			<div id="contactList">
+			</div>
+			<button id="addContact">Add</button>
+			
 			<input type="submit" value="Edit" />
 		</fieldset>
 	</form:form>
+	<script>
+		$("#addContact").click(function (e) {
+			e.preventDefault();
+			$("#contactList").append("<input type='text' name='contacts' /><br/>");
+		});
+	</script>
 </body>
 </html>
