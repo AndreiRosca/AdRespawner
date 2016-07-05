@@ -24,6 +24,8 @@
 			<form:input path="email" id="email" /><br/>
 			<label for="birthDate">Birth date:</label>
 			<form:input path="birthDate" id="birthdate" /><br/>
+			<label for="sex">Sex:</label>
+			<form:select path="sex" items="${sexSelectValues}" id="sex" /><br/>
 			<label for="profilePhoto">Profile photo:</label>
 			<form:input id="profilePhoto" path="userPhotoFile" type="file" />
 			<input type="submit" value="Edit" />
