@@ -53,8 +53,8 @@ public class InMemoryAdGateway implements AdGateway {
 		third.setAdAuthor(user);
 		first.setAdAuthor(user);
 		second.setAdAuthor(user);
-		third.getCharacteristics().add(new AdCharacteristic("Manufacturer", LaptopManufacturer.APPLE));
-		third.getCharacteristics().add(new AdCharacteristic("Offer type", OfferType.SELL));
+		third.getCharacteristics().add(new AdCharacteristic("Manufacturer", LaptopManufacturer.APPLE.toString()));
+		third.getCharacteristics().add(new AdCharacteristic("Offer type", OfferType.SELL.toString()));
 	}
 
 	@Override

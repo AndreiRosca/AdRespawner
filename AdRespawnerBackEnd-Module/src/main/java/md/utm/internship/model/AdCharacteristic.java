@@ -1,17 +1,24 @@
 package md.utm.internship.model;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @XmlRootElement
 public class AdCharacteristic {
 
 	private String name;
-	private Enum<?> value;
+	private String value;
+	
+	@XmlTransient
+	@JsonIgnore
+	private SubCategory subCategory;
 
 	public AdCharacteristic() {
 	}
 
-	public AdCharacteristic(String name, Enum<?> value) {
+	public AdCharacteristic(String name, String value) {
 		this.name = name;
 		this.value = value;
 	}
@@ -24,12 +31,20 @@ public class AdCharacteristic {
 		this.name = name;
 	}
 
-	public Enum<?> getValue() {
+	public String getValue() {
 		return value;
 	}
 
-	public void setValue(Enum<?> value) {
+	public void setValue(String value) {
 		this.value = value;
+	}
+
+	public SubCategory getSubCategory() {
+		return subCategory;
+	}
+
+	public void setSubCategory(SubCategory subCategory) {
+		this.subCategory = subCategory;
 	}
 
 	@Override
