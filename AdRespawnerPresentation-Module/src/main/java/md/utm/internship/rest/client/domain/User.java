@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @XmlRootElement
-@JsonIgnoreProperties(value = "userPhotoFile", ignoreUnknown = true)
+@JsonIgnoreProperties(value = { "userPhotoFile" }, ignoreUnknown = true)
 public class User {
 
 	private Long id;

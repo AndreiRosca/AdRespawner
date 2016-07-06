@@ -16,6 +16,7 @@
 	<h4>login: ${user.login}</h4>
 	<h4>sex: ${user.sex}</h4>
 	<h4>birthdate: ${user.birthDate}</h4>
+	<h4>password: ${user.password}</h4>
 	<a href="<spring:url value="${user.photo.fileSystemPath}" />">
 		<img src="<spring:url value="${user.photo.fileSystemPath}" />" width="300" height="200" />
 	</a>

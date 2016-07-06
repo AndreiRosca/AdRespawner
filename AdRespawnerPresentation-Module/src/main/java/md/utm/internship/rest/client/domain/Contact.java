@@ -57,6 +57,6 @@ public class Contact {
 
 	@Override
 	public String toString() {
-		return "Contact [countryCode=" + countryCode + ", phoneNumber=" + phoneNumber + "]";
+		return countryCode + phoneNumber;
 	}
 }

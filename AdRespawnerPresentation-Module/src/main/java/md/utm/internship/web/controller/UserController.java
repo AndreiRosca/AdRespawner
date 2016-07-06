@@ -70,7 +70,6 @@ public class UserController {
 	public String editUser(@PathVariable("userId") Long id, @ModelAttribute("editedUser") @Valid User user, 
 			BindingResult bindingResult, Model model, HttpServletRequest request) {
 		if (bindingResult.hasErrors()) {
-			System.out.println(user);
 			return "editUserProfile";
 		}
 		if (!user.getUserPhotoFile().isEmpty()) {
@@ -78,7 +77,7 @@ public class UserController {
 			Photo userPhoto = userService.moveUploadedUserPhoto(user, imagePath);
 			user.setPhoto(userPhoto);	
 		}
-		user.setId(id);
+		System.out.println(user.getContacts());
 		user = userService.updateUser(user);
 		model.addAttribute("userId", user.getId());
 		return "redirect:/users/{userId}";
