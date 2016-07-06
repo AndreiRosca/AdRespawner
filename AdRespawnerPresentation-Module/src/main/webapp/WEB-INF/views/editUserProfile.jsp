@@ -29,13 +29,18 @@
 			<form:input path="birthDate" id="birthdate" /><br/>
 			<label for="sex">Sex:</label>
 			<form:select path="sex" items="${sexSelectValues}" id="sex" /><br/>
+			<label for="password">Password:</label>
+			<form:password id="password" path="password" /><br/>
 			<label for="profilePhoto">Profile photo:</label>
-			<form:input id="profilePhoto" path="userPhotoFile" type="file" />
+			<form:input id="profilePhoto" path="userPhotoFile" type="file" /><br/>
 			
 			<label>Contacts:</label>
 			<div id="contactList">
+				<c:if test="${not empty editedUser.contacts}">
+					<input type="text" name="contacts" value="${editedUser.contacts[0]}" /><br/>
+				</c:if>
 			</div>
-			<button id="addContact">Add</button>
+			<button id="addContact">Add contact</button><br/>
 			
 			<input type="submit" value="Edit" />
 		</fieldset>

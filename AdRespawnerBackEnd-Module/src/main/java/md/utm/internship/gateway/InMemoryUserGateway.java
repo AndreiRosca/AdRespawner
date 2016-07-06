@@ -26,7 +26,7 @@ public class InMemoryUserGateway implements UserGateway {
 		first.getContacts().add(new Contact("+373", "69952044"));
 		first.getContacts().add(new Contact("+373", "022467911"));
 		first.setSex(Sex.MALE);
-		first.setPhoto(new Photo("/resources/images/macbook.png"));
+		first.setPhoto(new Photo("/resources/images/ad/macbook.png"));
 		first.setFirstName("Mike");
 		first.setLastName("Smith");
 		createUser(first);

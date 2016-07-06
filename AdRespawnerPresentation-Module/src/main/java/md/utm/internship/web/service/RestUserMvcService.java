@@ -45,7 +45,7 @@ public class RestUserMvcService implements UserMvcService {
 	public Photo moveUploadedUserPhoto(User user, String targetFolder) {
 		try {
 			String fileName = new Date().getTime() + "_" + user.getUserPhotoFile().getOriginalFilename();
-			String relativePath = "/resources/images/" + fileName;
+			String relativePath = "/resources/images/profile/" + fileName;
 			File userPhotoPath = new File(targetFolder + relativePath);
 			user.getUserPhotoFile().transferTo(userPhotoPath);
 			return new Photo(relativePath);

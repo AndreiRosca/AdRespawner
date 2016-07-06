@@ -8,7 +8,6 @@ public class StringToContactConverter implements Converter<String, Contact> {
 
 	@Override
 	public Contact convert(String source) {
-		System.out.println("converting");
 		String countryCode = source.substring(0, 4);
 		String phoneNumber = source.substring(4);
 		return new Contact(countryCode, phoneNumber);
