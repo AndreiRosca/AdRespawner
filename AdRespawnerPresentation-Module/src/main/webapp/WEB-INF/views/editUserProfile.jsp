@@ -14,6 +14,9 @@
 	<h4>Edit user profile</h4>
 	<spring:url value="/users/${editedUser.id}/edit" var="formTargetUrl" />
 	<form:form method="post" action="${formTargetUrl}" modelAttribute="editedUser" enctype="multipart/form-data">
+		<p>
+			<form:errors path="*" />
+		</p>
 		<fieldset>
 			<legend>Edit user</legend>
 			<label for="firstName">First Name:</label>

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import md.utm.internship.rest.client.domain.Photo;
 import md.utm.internship.rest.client.domain.Sex;
@@ -20,6 +21,7 @@ import md.utm.internship.rest.client.domain.User;
 import md.utm.internship.web.service.UserMvcService;
 
 @Controller
+@SessionAttributes({ "editedUser" })
 public class UserController {
 
 	@Autowired
@@ -37,6 +39,7 @@ public class UserController {
 		return "registration";
 	}
 	
+	
 	@RequestMapping(value = "/registration", method = RequestMethod.POST)
 	public String registerUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
@@ -51,21 +54,25 @@ public class UserController {
 	public void initBinding(WebDataBinder webDataBinder) {
 		webDataBinder.setAllowedFields("login", "password", "email");
 	}
+
+	@ModelAttribute
+	public void populateModel(Model model) {
+		model.addAttribute("sexSelectValues", Sex.values());
+	}
 	
 	@RequestMapping(value = "/users/{userId}/edit", method = RequestMethod.GET)
 	public String showProfileEditPage(@PathVariable("userId") Long userId, Model model) {
 		model.addAttribute("editedUser", userService.getUser(userId));
-		model.addAttribute("sexSelectValues", Sex.values());
 		return "editUserProfile";
 	}
 	
 	@RequestMapping(value = "/users/{userId}/edit", method = RequestMethod.POST)
 	public String editUser(@PathVariable("userId") Long id, @ModelAttribute("editedUser") @Valid User user, 
 			BindingResult bindingResult, Model model, HttpServletRequest request) {
-		/*if (bindingResult.hasErrors()) {
-			System.out.println(bindingResult.getFieldErrors());
+		if (bindingResult.hasErrors()) {
+			System.out.println(user);
 			return "editUserProfile";
-		}*/
+		}
 		if (!user.getUserPhotoFile().isEmpty()) {
 			String imagePath = request.getServletContext().getRealPath("/");
 			Photo userPhoto = userService.moveUploadedUserPhoto(user, imagePath);
@@ -73,7 +80,6 @@ public class UserController {
 		}
 		user.setId(id);
 		user = userService.updateUser(user);
-		System.out.println(user.getContacts());
 		model.addAttribute("userId", user.getId());
 		return "redirect:/users/{userId}";
 	}

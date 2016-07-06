@@ -10,6 +10,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 import org.hibernate.validator.constraints.Email;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -35,6 +36,7 @@ public class User {
 	private String firstName;
 	private String lastName;
 	
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date birthDate;
 	
 	private Sex sex;
