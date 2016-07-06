@@ -77,7 +77,6 @@ public class UserController {
 			Photo userPhoto = userService.moveUploadedUserPhoto(user, imagePath);
 			user.setPhoto(userPhoto);	
 		}
-		System.out.println(user.getContacts());
 		user = userService.updateUser(user);
 		model.addAttribute("userId", user.getId());
 		return "redirect:/users/{userId}";

@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import md.utm.internship.rest.client.domain.AdCharacteristic;
 import md.utm.internship.rest.client.domain.Photo;
@@ -14,8 +18,12 @@ import md.utm.internship.rest.client.domain.SubCategory;
 import md.utm.internship.rest.client.domain.User;
 
 @XmlRootElement
+@JsonIgnoreProperties(ignoreUnknown = true, value = { "adDomain", "adCategory" })
 public class Ad {
 	private Long id;
+	
+	@Size(min = 4)
+	@NotNull
 	private String title;
 	private String description;
 	private Date postingDate;
@@ -25,6 +33,8 @@ public class Ad {
 	private List<Photo> photos = new ArrayList<>();
 	private SubCategory subCategory;
 	private List<AdCharacteristic> characteristics = new ArrayList<>();
+	private String adDomain;
+	private String adCategory;
 
 	public Ad() {
 	}
@@ -181,5 +191,21 @@ public class Ad {
 	@Override
 	public String toString() {
 		return "Ad [id=" + id + ", title=" + title + ", postingDate=" + postingDate + ", adAuthor=" + adAuthor + "]";
+	}
+
+	public String getAdDomain() {
+		return adDomain;
+	}
+
+	public void setAdDomain(String adDomain) {
+		this.adDomain = adDomain;
+	}
+
+	public String getAdCategory() {
+		return adCategory;
+	}
+
+	public void setAdCategory(String adCategory) {
+		this.adCategory = adCategory;
 	}
 }

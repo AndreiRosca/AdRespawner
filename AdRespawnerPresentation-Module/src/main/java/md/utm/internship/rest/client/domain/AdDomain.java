@@ -58,6 +58,6 @@ public class AdDomain {
 
 	@Override
 	public String toString() {
-		return "AdDomain [name=" + name + "]";
+		return name;
 	}
 }
