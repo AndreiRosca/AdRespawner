@@ -33,7 +33,7 @@ public class MessageResource {
 		return userService.getSentMessages(userId);
 	}
 	
-	@Path("/sendMessage")
+	@Path("/messages")
 	@POST
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	public Message sendMessage(Message message) {
