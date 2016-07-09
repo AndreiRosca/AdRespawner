@@ -25,11 +25,11 @@ public class User {
 	
 	@XmlTransient
 	@JsonIgnore
-	private Set<Message> receivedMessages = new HashSet<>();
+	private Set<Message> receivedMessages = new LinkedHashSet<>();
 	
 	@XmlTransient
 	@JsonIgnore
-	private Set<Message> sentMessages = new HashSet<>();
+	private Set<Message> sentMessages = new LinkedHashSet<>();
 	private Photo photo;
 	
 	@XmlTransient

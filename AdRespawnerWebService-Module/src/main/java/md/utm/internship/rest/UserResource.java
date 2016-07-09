@@ -58,4 +58,10 @@ public class UserResource {
 	public void deleteUser(@PathParam("id") Long userId) {
 		userService.deleteUser(userId);
 	}
+	
+	@Path("{id}")
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	public MessageResource messageResource(@PathParam("id") Long userId) {
+		return new MessageResource(userService, userId);
+	}
 }

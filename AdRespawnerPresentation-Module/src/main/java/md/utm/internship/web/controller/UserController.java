@@ -41,7 +41,8 @@ public class UserController {
 	
 	
 	@RequestMapping(value = "/registration", method = RequestMethod.POST)
-	public String registerUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult, Model model) {
+	public String registerUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult, 
+			Model model) {
 		if (bindingResult.hasErrors()) {
 			return "registration";
 		}
@@ -69,9 +70,8 @@ public class UserController {
 	@RequestMapping(value = "/users/{userId}/edit", method = RequestMethod.POST)
 	public String editUser(@PathVariable("userId") Long id, @ModelAttribute("editedUser") @Valid User user, 
 			BindingResult bindingResult, Model model, HttpServletRequest request) {
-		if (bindingResult.hasErrors()) {
+		if (bindingResult.hasErrors())
 			return "editUserProfile";
-		}
 		if (!user.getUserPhotoFile().isEmpty()) {
 			String imagePath = request.getServletContext().getRealPath("/");
 			Photo userPhoto = userService.moveUploadedUserPhoto(user, imagePath);

@@ -7,10 +7,15 @@
 	<title>AdRespawner - ${ad.title}</title>
 	<meta charset="utf-8" />
 	<script src="<spring:url value="/resources/js/lib/jquery-3.0.0.js" />"></script>
+	<script src="<spring:url value="/resources/js/sendMessageUtil.js" />"></script>
 	<link rel="stylesheet" type="text/css" href="<spring:url value="/resources/css/style.css" />" />
 </head>
 <body>
 	<h1>Welcome to AdRespawner!</h1>
+	<a href="<spring:url value="/users/${ad.adAuthor.id}" />">${ad.adAuthor.login}</a><br/>
+	<a href="#" id="sendMessageLink">Send message</a>
+	<div id="messageContainer"></div>
+	<br/>
 	<h4>${ad.title}</h4>
 	<p>${ad.description}</p>
 	<p>${ad.region.country}, ${ad.region.municipality}</p>
@@ -33,6 +38,7 @@
 	<c:forEach items="${ad.adAuthor.contacts}" var="contact">
 		<p>${contact.countryCode} ${contact.phoneNumber}</p>
 	</c:forEach>
+	<br/>
 	<a href="<spring:url value="/ads/${ad.subCategory.id}" />">Back</a>
 </body>
 </html>
