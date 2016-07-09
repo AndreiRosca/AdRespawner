@@ -14,6 +14,9 @@
 	<h1>Welcome to AdRespawner!</h1>
 	<a href="<spring:url value="/users/${ad.adAuthor.id}" />">${ad.adAuthor.login}</a><br/>
 	<a href="#" id="sendMessageLink">Send message</a>
+	<script>
+	$("#sendMessageLink").data("adAuthorId", ${ad.adAuthor.id});
+	</script>
 	<div id="messageContainer"></div>
 	<br/>
 	<h4>${ad.title}</h4>

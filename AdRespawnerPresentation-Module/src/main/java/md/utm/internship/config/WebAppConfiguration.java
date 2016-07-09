@@ -1,5 +1,7 @@
 package md.utm.internship.config;
 
+import java.util.Arrays;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -10,7 +12,9 @@ import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import md.utm.internship.web.converter.StringToContactConverter;
 
@@ -32,6 +36,14 @@ public class WebAppConfiguration extends WebMvcConfigurerAdapter {
 	public MultipartResolver multipartResolver() {
 		CommonsMultipartResolver resolver = new CommonsMultipartResolver();
 		resolver.setMaxUploadSize(-1);
+		return resolver;
+	}
+	
+	@Bean
+	public ViewResolver contentNegotiatingViewResolver() {
+		ContentNegotiatingViewResolver resolver = new ContentNegotiatingViewResolver();
+		MappingJackson2JsonView jsonView = new MappingJackson2JsonView();
+		resolver.setDefaultViews(Arrays.asList(jsonView));
 		return resolver;
 	}
 	

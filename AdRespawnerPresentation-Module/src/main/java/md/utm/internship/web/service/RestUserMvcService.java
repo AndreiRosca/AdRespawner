@@ -3,8 +3,10 @@ package md.utm.internship.web.service;
 import java.io.File;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import md.utm.internship.rest.client.UserResourceClient;
+import md.utm.internship.rest.client.domain.Message;
 import md.utm.internship.rest.client.domain.Photo;
 import md.utm.internship.rest.client.domain.User;
 
@@ -52,5 +54,20 @@ public class RestUserMvcService implements UserMvcService {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@Override
+	public Set<Message> getReceivedMessages(Long userId) {
+		return userResourceClient.getReceivedMessages(userId);
+	}
+
+	@Override
+	public Set<Message> getSentMessages(Long userId) {
+		return userResourceClient.getSentMessages(userId);
+	}
+
+	@Override
+	public Message sendMessage(Message message) {
+		return userResourceClient.sendMessage(message);
 	}
 }

@@ -57,6 +57,7 @@ public class UserResourceClient {
 	
 	public Set<Message> getReceivedMessages(Long userId) {
 		return target.path(userId.toString())
+					 .path("receivedMessages")
 					 .request()
 					 .accept(MediaType.APPLICATION_JSON)
 					 .get(new GenericType<LinkedHashSet<Message>>() {});
@@ -64,6 +65,7 @@ public class UserResourceClient {
 	
 	public Set<Message> getSentMessages(Long userId) {
 		return target.path(userId.toString())
+					 .path("sentMessages")
 					 .request()
 					 .accept(MediaType.APPLICATION_JSON)
 					 .get(new GenericType<LinkedHashSet<Message>>() {});
@@ -71,9 +73,10 @@ public class UserResourceClient {
 	
 	public Message sendMessage(Message message) {
 		return target.path(message.getSender().getId().toString())
+					 .path("/messages")
 					 .request()
 					 .accept(MediaType.APPLICATION_JSON)
-					 .put(Entity.json(message), Message.class);
+					 .post(Entity.json(message), Message.class);
 	}
 	
 	public void dispose() {

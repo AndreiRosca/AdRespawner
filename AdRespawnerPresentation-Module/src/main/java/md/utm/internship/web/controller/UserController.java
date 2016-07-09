@@ -1,5 +1,7 @@
 package md.utm.internship.web.controller;
 
+import java.util.Set;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import md.utm.internship.rest.client.domain.Message;
 import md.utm.internship.rest.client.domain.Photo;
 import md.utm.internship.rest.client.domain.Sex;
 import md.utm.internship.rest.client.domain.User;

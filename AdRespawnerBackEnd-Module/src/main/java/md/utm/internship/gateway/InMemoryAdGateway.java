@@ -48,6 +48,7 @@ public class InMemoryAdGateway implements AdGateway {
 		third.getPhotos().add(new Photo("/resources/images/macbook.png"));
 		third.getPhotos().add(new Photo("/resources/images/macbook2.jpg"));
 		User user = new User("mike@gmail.com", "mike", "p@sswd");
+		user.setId(1L);
 		user.getContacts().add(new Contact("+373", "69952044"));
 		user.getContacts().add(new Contact("+373", "022467911"));
 		third.setAdAuthor(user);
