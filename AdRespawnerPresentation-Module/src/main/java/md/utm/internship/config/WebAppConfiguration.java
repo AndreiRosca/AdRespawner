@@ -20,6 +20,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import md.utm.internship.web.converter.StringToContactConverter;
+import md.utm.internship.web.converter.StringToPriceConverter;
 import md.utm.internship.web.converter.StringToSubCategoryConverter;
 import md.utm.internship.web.service.CategoryMvcService;
 
@@ -63,6 +64,7 @@ public class WebAppConfiguration extends WebMvcConfigurerAdapter implements Appl
 	public void addFormatters(FormatterRegistry registry) {
 		registry.addConverter(new StringToContactConverter());
 		registry.addConverter(new StringToSubCategoryConverter(applicationContext.getBean(CategoryMvcService.class)));
+		registry.addConverter(new StringToPriceConverter());
 	}
 
 	@Override

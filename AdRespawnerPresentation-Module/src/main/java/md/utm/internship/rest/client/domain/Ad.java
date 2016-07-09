@@ -10,13 +10,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import md.utm.internship.rest.client.domain.AdCharacteristic;
-import md.utm.internship.rest.client.domain.Photo;
-import md.utm.internship.rest.client.domain.Price;
-import md.utm.internship.rest.client.domain.Region;
-import md.utm.internship.rest.client.domain.SubCategory;
-import md.utm.internship.rest.client.domain.User;
-
 @XmlRootElement
 @JsonIgnoreProperties(ignoreUnknown = true, value = { "adDomain", "adCategory" })
 public class Ad {
@@ -26,7 +19,7 @@ public class Ad {
 	@NotNull
 	private String title;
 	private String description;
-	private Date postingDate;
+	private Date postingDate = new Date();
 	private User adAuthor;
 	private Price price;
 	private Region region;
@@ -127,6 +120,22 @@ public class Ad {
 		this.characteristics = characteristics;
 	}
 
+	public String getAdDomain() {
+		return adDomain;
+	}
+	
+	public void setAdDomain(String adDomain) {
+		this.adDomain = adDomain;
+	}
+	
+	public String getAdCategory() {
+		return adCategory;
+	}
+	
+	public void setAdCategory(String adCategory) {
+		this.adCategory = adCategory;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -140,6 +149,7 @@ public class Ad {
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
 		return result;
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -193,19 +203,4 @@ public class Ad {
 		return "Ad [id=" + id + ", title=" + title + ", postingDate=" + postingDate + ", adAuthor=" + adAuthor + "]";
 	}
 
-	public String getAdDomain() {
-		return adDomain;
-	}
-
-	public void setAdDomain(String adDomain) {
-		this.adDomain = adDomain;
-	}
-
-	public String getAdCategory() {
-		return adCategory;
-	}
-
-	public void setAdCategory(String adCategory) {
-		this.adCategory = adCategory;
-	}
 }

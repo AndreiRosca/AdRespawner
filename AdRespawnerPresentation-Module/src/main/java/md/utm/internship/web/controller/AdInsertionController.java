@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import md.utm.internship.rest.client.domain.Ad;
+import md.utm.internship.rest.client.domain.Currency;
 import md.utm.internship.web.service.AdDomainMvcService;
 import md.utm.internship.web.service.AdMvcService;
 
@@ -27,6 +28,7 @@ public class AdInsertionController {
 	public String showAdAdditionPage(Model model) {
 		model.addAttribute("adDomainList", adDomainService.getAllAdDomains());
 		model.addAttribute("newAd", new Ad());
+		model.addAttribute("availableCurrencies", Currency.values());
 		return "addAd";
 	}
 	

@@ -35,6 +35,9 @@
 			<form:input path="title" id="adTitle" /><br/>
 			<label for="adDescription">Description:</label>
 			<form:textarea rows="3" cols="20" path="description" id="adDescription" /><br/>
+			<label for="priceAmount">Price:</label>
+			<input type="text" name="priceAmount" id="priceAmount" />
+			<form:select path="price" items="${availableCurrencies}" id="priceCurrency" />
 			<input type="submit" value="Add" />
 		</fieldset>
 	</form:form>
