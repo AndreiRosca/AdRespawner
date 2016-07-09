@@ -1,8 +1,10 @@
 package md.utm.internship.service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,12 +52,20 @@ public class BasicUserService implements UserService {
 
 	@Override
 	public Set<Message> getReceivedMessages(Long userId) {
-		return userGateway.getUser(userId).getReceivedMessages();
+		return userGateway.getUser(userId)
+					 	  .getReceivedMessages()
+					 	  .stream()
+					 	  .sorted(Comparator.comparing(Message::getPostingDate).reversed())
+					 	  .collect(Collectors.toSet());
 	}
 
 	@Override
 	public Set<Message> getSentMessages(Long userId) {
-		return userGateway.getUser(userId).getSentMessages();
+		return userGateway.getUser(userId)
+						  .getSentMessages()
+						  .stream()
+					 	  .sorted(Comparator.comparing(Message::getPostingDate).reversed())
+					 	  .collect(Collectors.toSet());
 	}
 
 	@Override

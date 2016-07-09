@@ -11,6 +11,8 @@
 </head>
 <body>
 	<h4>User profile</h4>
+	<a href="">Sent messages</a><br/>
+	<a href="">Received messages</a>
 	<h3>Name: ${user.firstName} ${user.lastName}</h3>
 	<h4>email: ${user.email}</h4>
 	<h4>login: ${user.login}</h4>
