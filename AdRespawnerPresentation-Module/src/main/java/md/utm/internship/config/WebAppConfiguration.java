@@ -2,6 +2,9 @@ package md.utm.internship.config;
 
 import java.util.Arrays;
 
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -17,11 +20,15 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import md.utm.internship.web.converter.StringToContactConverter;
+import md.utm.internship.web.converter.StringToSubCategoryConverter;
+import md.utm.internship.web.service.CategoryMvcService;
 
 @Configuration
 @EnableWebMvc
 @ComponentScan("md.utm.internship.web")
-public class WebAppConfiguration extends WebMvcConfigurerAdapter {
+public class WebAppConfiguration extends WebMvcConfigurerAdapter implements ApplicationContextAware {
+
+	private ApplicationContext applicationContext;
 
 	@Bean
 	public ViewResolver viewResolver() {
@@ -55,5 +62,11 @@ public class WebAppConfiguration extends WebMvcConfigurerAdapter {
 	@Override
 	public void addFormatters(FormatterRegistry registry) {
 		registry.addConverter(new StringToContactConverter());
+		registry.addConverter(new StringToSubCategoryConverter(applicationContext.getBean(CategoryMvcService.class)));
+	}
+
+	@Override
+	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+		this.applicationContext = applicationContext;
 	}
 }

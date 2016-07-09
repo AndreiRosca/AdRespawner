@@ -22,8 +22,7 @@ public class CategoryController {
 	
 	@GetMapping
 	public String getCategories(@PathVariable("id") Long adDomainId, Model model) {
-		categoryService.setAdDomainId(adDomainId);
-		model.addAttribute("categoryList", categoryService.getAllCategories());
+		model.addAttribute("categoryList", categoryService.getAllCategories(adDomainId));
 		return "category";
 	}
 	

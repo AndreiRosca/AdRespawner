@@ -27,4 +27,9 @@ public class RestAdMvcService implements AdMvcService {
 	public Ad getAd(Long adId) {
 		return adResourceClient.getAd(adId);
 	}
+
+	@Override
+	public Ad createAd(Ad ad) {
+		return adResourceClient.createAd(ad);
+	}
 }

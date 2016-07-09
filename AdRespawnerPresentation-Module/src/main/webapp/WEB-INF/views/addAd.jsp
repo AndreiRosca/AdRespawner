@@ -8,6 +8,7 @@
 	<title>AdRespawner - new ad</title>
 	<meta charset="utf-8" />
 	<script src="<spring:url value="/resources/js/lib/jquery-3.0.0.js" />"></script>
+	<script src="<spring:url value="/resources/js/addInsertionUtilities.js" />"></script>
 	<link rel="stylesheet" type="text/css" href="<spring:url value="/resources/css/style.css" />" />
 </head>
 <body>
@@ -26,6 +27,9 @@
 			<br/>
 			<form:select id="categoryList" path="adCategory">
 				<option value="0">Select category</option>
+			</form:select><br/>
+			<form:select id="subCategoryList" path="subCategory">
+				<option value="0">Select subcategory</option>
 			</form:select>
 			<label for="adTitle">Title:</label>
 			<form:input path="title" id="adTitle" /><br/>
@@ -34,21 +38,5 @@
 			<input type="submit" value="Add" />
 		</fieldset>
 	</form:form>
-	<script>
-		$("#adCategory").change(function () {
-			var selectedAdDomainId = $("#adCategory option:selected").val();
-			console.log(selectedAdDomainId);
-			var resourceUrl = "http://localhost:8080/AdRespawnerWebService-Module/rest/adDomains/" + selectedAdDomainId;
-			var request = $.ajax({ url : resourceUrl, method : "get", headers : { Accept : "application/json" } });
-			request.done(function (data) {
-				var categoryList = JSON.parse(data);
-				console.log(data);
-				categoryList.forEach(function (category, index) {
-					console.log(category);
-					$("#categoryList").append("<option value='" + category.id + "'>" + category.name +"</option>");
-				});
-			});
-		});
-	</script>
 </body>
 </html>

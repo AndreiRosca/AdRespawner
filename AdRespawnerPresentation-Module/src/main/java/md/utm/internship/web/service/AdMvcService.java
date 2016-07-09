@@ -9,4 +9,5 @@ public interface AdMvcService {
 	List<Ad> getAllAds();
 	Ad getAd(Long adId);
 	void setAdSubResourceId(Long adSubResourceId);
+	Ad createAd(Ad ad);
 }

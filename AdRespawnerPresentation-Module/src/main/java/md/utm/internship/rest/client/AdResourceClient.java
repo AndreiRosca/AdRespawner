@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
@@ -31,6 +32,12 @@ public class AdResourceClient {
 					 .request()
 					 .accept(MediaType.APPLICATION_JSON)
 					 .get(new GenericType<Ad>() {});
+	}
+	
+	public Ad createAd(Ad ad) {
+		return target.request()
+					 .accept(MediaType.APPLICATION_JSON)
+					 .post(Entity.json(ad), Ad.class);
 	}
 	
 	public void dispose() {

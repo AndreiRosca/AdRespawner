@@ -27,12 +27,12 @@ public class CategoryControllerTest {
 	@Autowired
 	private CategoryController controller;
 	private CategoryMvcService categoryService;
-	private String adDomainId = "1";
+	private Long adDomainId = 1L;
 	
 	@Before
 	public void setUp() {
 		categoryService = mock(CategoryMvcService.class);
-		when(categoryService.getAllCategories()).thenReturn(Collections.emptyList());
+		when(categoryService.getAllCategories(adDomainId)).thenReturn(Collections.emptyList());
 		controller.setCategoryMvcService(categoryService);
 	}
 	
@@ -42,6 +42,6 @@ public class CategoryControllerTest {
 		mockMvc.perform(get("/category/" + adDomainId))
 			   .andExpect(model().attributeExists("categoryList"))
 			   .andExpect(view().name("category"));
-		verify(categoryService).getAllCategories();
+		verify(categoryService).getAllCategories(adDomainId);
 	}
 }
