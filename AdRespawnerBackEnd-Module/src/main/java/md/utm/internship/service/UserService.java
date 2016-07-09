@@ -15,4 +15,7 @@ public interface UserService {
 	Set<Message> getReceivedMessages(Long userId);
 	Set<Message> getSentMessages(Long userId);
 	Message sendMessage(Message message);
+	Message getReceivedMessage(Long messageId);
+	Message getSentMessage(Long messageId);
+	Message getMessageById(Long messageId);
 }

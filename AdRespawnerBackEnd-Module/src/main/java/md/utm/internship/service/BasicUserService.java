@@ -3,6 +3,7 @@ package md.utm.internship.service;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -68,5 +69,34 @@ public class BasicUserService implements UserService {
 		userGateway.updateUser(sender);
 		userGateway.updateUser(receiver);
 		return message;
+	}
+
+	@Override
+	public Message getReceivedMessage(Long messageId) {
+		return getAllUsers().stream()
+							.flatMap(u -> u.getReceivedMessages().stream())
+							.filter(m -> m.getId().equals(messageId))
+							.findAny()
+							.orElseThrow(() -> new RuntimeException("Didn't find any messages with the id."));
+	}
+
+	@Override
+	public Message getSentMessage(Long messageId) {
+		return getAllUsers().stream()
+							.flatMap(u -> u.getSentMessages().stream())
+							.filter(m -> m.getId().equals(messageId))
+							.findAny()
+							.orElseThrow(() -> new RuntimeException("Didn't find any messages with the id."));
+	}
+
+	@Override
+	public Message getMessageById(Long messageId) {
+		Stream<Message> sentMessagesStream = getAllUsers().stream().flatMap(u -> u.getSentMessages().stream());
+		Stream<Message> receivedMessagesStream = 
+				getAllUsers().stream().flatMap(u -> u.getReceivedMessages().stream()); 
+		return Stream.concat(sentMessagesStream, receivedMessagesStream)
+					 .filter(m -> m.getId().equals(messageId))
+					 .findAny()
+					 .orElseThrow(() -> new RuntimeException("Didn't find any messages with the id."));
 	}
 }
