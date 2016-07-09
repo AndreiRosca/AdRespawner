@@ -14,6 +14,7 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import md.utm.internship.model.Ad;
+import md.utm.internship.rest.listener.FreshAdListener;
 import md.utm.internship.service.AdService;
 
 @Path("/subCategories/{id}/ads")
@@ -21,6 +22,9 @@ public class AdResource {
 
 	@Autowired
 	private AdService adService;
+	
+	@Autowired
+	private FreshAdListener freshAdListener;
 
 	@GET
 	public List<Ad> getAllAds(@PathParam("id") Long subCategoryId) {
@@ -36,7 +40,9 @@ public class AdResource {
 	@POST
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	public Ad createAd(Ad ad) {
-		return adService.createAd(ad);
+		Ad newAd = adService.createAd(ad);
+		freshAdListener.adCreated(newAd);
+		return newAd;
 	}
 	
 	@PUT

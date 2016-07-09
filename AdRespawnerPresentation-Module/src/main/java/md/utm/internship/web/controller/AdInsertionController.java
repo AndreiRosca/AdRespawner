@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -39,18 +41,20 @@ public class AdInsertionController {
 	@PostMapping("/addAd")
 	public String addNewAd(@ModelAttribute("newAd") @Valid Ad newAd, BindingResult bindingResult, 
 			Model model, HttpServletRequest request) {
-		System.out.println(newAd);
-		if (bindingResult.hasErrors()) {
+		if (bindingResult.hasErrors())
 			return "/addAd";
-		}
 		String basePath = request.getServletContext().getRealPath("/");
 		List<Photo> photos = adService.moveUploadedAdPhotoFiles(basePath, newAd.getAdPhotos());
 		newAd.setPhotos(photos);
-		
 		adService.setAdSubResourceId(newAd.getSubCategory().getId());
 		newAd = adService.createAd(newAd);
 		model.addAttribute("adId", newAd.getId());
 		model.addAttribute("subCategoryId", newAd.getSubCategory().getId());
 		return "redirect:ads/{subCategoryId}/ad/{adId}";
+	}
+	
+	@InitBinder
+	public void init(WebDataBinder webDataBinder) {
+		
 	}
 }

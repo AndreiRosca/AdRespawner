@@ -40,7 +40,7 @@
 			<form:select path="price" items="${availableCurrencies}" id="priceCurrency" /><br/>
 			
 			<button id="addPhotoButton">Add photo</button>
-			<div id="fileChooserContailer"></div>
+			<div id="fileChooserContainer"></div>
 		
 			<input type="submit" value="Add ad" />
 		</fieldset>

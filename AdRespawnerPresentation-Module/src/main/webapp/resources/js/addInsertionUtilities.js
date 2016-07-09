@@ -2,7 +2,7 @@
 	$(document).ready(function () {
 		$("#addPhotoButton").click(function (e) {
 			e.preventDefault();
-			$("#fileChooserContailer").append("<input type='file' name='adPhotos' /><br/>");
+			$("#fileChooserContainer").append("<input type='file' name='adPhotos' /><br/>");
 		});
 	});
 
