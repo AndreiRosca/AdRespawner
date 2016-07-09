@@ -1,5 +1,12 @@
 
 	$(document).ready(function () {
+		$("#addPhotoButton").click(function (e) {
+			e.preventDefault();
+			$("#fileChooserContailer").append("<input type='file' name='adPhotos' /><br/>");
+		});
+	});
+
+	$(document).ready(function () {
 		$("#priceAmount").keyup(function () {
 			var price = $(this).val();
 			$("#priceCurrency option").each(function () {

@@ -8,10 +8,12 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @XmlRootElement
-@JsonIgnoreProperties(ignoreUnknown = true, value = { "adDomain", "adCategory" })
+@JsonIgnoreProperties(ignoreUnknown = true, value = { "adDomain", "adCategory", "adPhotos" })
 public class Ad {
 	private Long id;
 	
@@ -28,6 +30,7 @@ public class Ad {
 	private List<AdCharacteristic> characteristics = new ArrayList<>();
 	private String adDomain;
 	private String adCategory;
+	private List<MultipartFile> adPhotos = new ArrayList<>();
 
 	public Ad() {
 	}
@@ -134,6 +137,14 @@ public class Ad {
 	
 	public void setAdCategory(String adCategory) {
 		this.adCategory = adCategory;
+	}
+
+	public List<MultipartFile> getAdPhotos() {
+		return adPhotos;
+	}
+
+	public void setAdPhotos(List<MultipartFile> adPhotos) {
+		this.adPhotos = adPhotos;
 	}
 
 	@Override

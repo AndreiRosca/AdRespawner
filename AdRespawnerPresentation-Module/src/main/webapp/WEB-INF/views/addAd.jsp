@@ -13,7 +13,7 @@
 </head>
 <body>
 	<spring:url value="/addAd" var="targetFormUrl" />
-	<form:form method="post" action="${targetFormUrl}" modelAttribute="newAd">
+	<form:form method="post" action="${targetFormUrl}" modelAttribute="newAd" enctype="multipart/form-data">
 		<fieldset>
 			<legend>Add ad</legend>
 			<form:errors path="*" />
@@ -37,8 +37,12 @@
 			<form:textarea rows="3" cols="20" path="description" id="adDescription" /><br/>
 			<label for="priceAmount">Price:</label>
 			<input type="text" name="priceAmount" id="priceAmount" />
-			<form:select path="price" items="${availableCurrencies}" id="priceCurrency" />
-			<input type="submit" value="Add" />
+			<form:select path="price" items="${availableCurrencies}" id="priceCurrency" /><br/>
+			
+			<button id="addPhotoButton">Add photo</button>
+			<div id="fileChooserContailer"></div>
+		
+			<input type="submit" value="Add ad" />
 		</fieldset>
 	</form:form>
 </body>

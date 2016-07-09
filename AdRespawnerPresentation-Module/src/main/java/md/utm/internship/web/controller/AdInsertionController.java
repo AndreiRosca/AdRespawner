@@ -1,5 +1,8 @@
 package md.utm.internship.web.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import md.utm.internship.rest.client.domain.Ad;
 import md.utm.internship.rest.client.domain.Currency;
+import md.utm.internship.rest.client.domain.Photo;
 import md.utm.internship.web.service.AdDomainMvcService;
 import md.utm.internship.web.service.AdMvcService;
 
@@ -33,11 +37,16 @@ public class AdInsertionController {
 	}
 	
 	@PostMapping("/addAd")
-	public String addNewAd(@ModelAttribute("newAd") @Valid Ad newAd, BindingResult bindingResult, Model model) {
+	public String addNewAd(@ModelAttribute("newAd") @Valid Ad newAd, BindingResult bindingResult, 
+			Model model, HttpServletRequest request) {
 		System.out.println(newAd);
 		if (bindingResult.hasErrors()) {
 			return "/addAd";
 		}
+		String basePath = request.getServletContext().getRealPath("/");
+		List<Photo> photos = adService.moveUploadedAdPhotoFiles(basePath, newAd.getAdPhotos());
+		newAd.setPhotos(photos);
+		
 		adService.setAdSubResourceId(newAd.getSubCategory().getId());
 		newAd = adService.createAd(newAd);
 		model.addAttribute("adId", newAd.getId());

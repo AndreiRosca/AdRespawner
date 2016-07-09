@@ -23,6 +23,7 @@
 	<p>${ad.description}</p>
 	<p>${ad.region.country}, ${ad.region.municipality}</p>
 	<p>${ad.price.amount} ${ad.price.currency}</p>
+	<p>${ad.postingDate}</p>
 	
 	<c:forEach items="${ad.photos}" var="photo">
 		<a href="<spring:url value="${photo.fileSystemPath}" />">
