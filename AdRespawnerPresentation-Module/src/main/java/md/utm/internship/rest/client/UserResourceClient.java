@@ -1,6 +1,8 @@
 package md.utm.internship.rest.client;
 
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -9,6 +11,7 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 
+import md.utm.internship.rest.client.domain.Message;
 import md.utm.internship.rest.client.domain.User;
 
 public class UserResourceClient {
@@ -50,6 +53,27 @@ public class UserResourceClient {
 		target.path(userId.toString())
 			  .request()
 			  .delete();
+	}
+	
+	public Set<Message> getReceivedMessages(Long userId) {
+		return target.path(userId.toString())
+					 .request()
+					 .accept(MediaType.APPLICATION_JSON)
+					 .get(new GenericType<LinkedHashSet<Message>>() {});
+	}
+	
+	public Set<Message> getSentMessages(Long userId) {
+		return target.path(userId.toString())
+					 .request()
+					 .accept(MediaType.APPLICATION_JSON)
+					 .get(new GenericType<LinkedHashSet<Message>>() {});
+	}
+	
+	public Message sendMessage(Message message) {
+		return target.path(message.getSender().getId().toString())
+					 .request()
+					 .accept(MediaType.APPLICATION_JSON)
+					 .put(Entity.json(message), Message.class);
 	}
 	
 	public void dispose() {
