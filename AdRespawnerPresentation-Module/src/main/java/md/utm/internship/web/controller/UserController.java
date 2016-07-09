@@ -88,4 +88,16 @@ public class UserController {
 				"birthDate", "userPhotoFile", "sex", "contacts", "password" };
 		webDataBinder.setAllowedFields(allowedFields);
 	}
+	
+	@RequestMapping(value = "/users/{id}/messages", params = { "received" })
+	public String showReceivedMessages(@PathVariable("id") Long userId, Model model) {
+		model.addAttribute("messageSet", userService.getReceivedMessages(userId));
+		return "viewMessages";
+	}
+	
+	@RequestMapping(value = "/users/{id}/messages", params = { "sent" })
+	public String showSentMessages(@PathVariable("id") Long userId, Model model) {
+		model.addAttribute("messageSet", userService.getSentMessages(userId));
+		return "viewMessages";
+	}
 }

@@ -11,8 +11,8 @@
 </head>
 <body>
 	<h4>User profile</h4>
-	<a href="">Sent messages</a><br/>
-	<a href="">Received messages</a>
+	<a href="<spring:url value="/users/${user.id}/messages?sent" />">Sent messages</a><br/>
+	<a href="<spring:url value="/users/${user.id}/messages?received" />">Received messages</a><br/>
 	<h3>Name: ${user.firstName} ${user.lastName}</h3>
 	<h4>email: ${user.email}</h4>
 	<h4>login: ${user.login}</h4>
