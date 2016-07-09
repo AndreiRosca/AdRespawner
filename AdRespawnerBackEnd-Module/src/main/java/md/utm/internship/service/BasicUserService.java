@@ -2,6 +2,7 @@ package md.utm.internship.service;
 
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import md.utm.internship.model.User;
 @Service
 public class BasicUserService implements UserService {
 	
+	private static AtomicLong idGenerator = new AtomicLong(0);
 	private UserGateway userGateway;
 
 	@Autowired
@@ -60,6 +62,7 @@ public class BasicUserService implements UserService {
 		User sender = userGateway.getUser(message.getSender().getId());
 		User receiver = userGateway.getUser(message.getReceiver().getId());
 		message = new Message(sender, receiver, message.getMessage());
+		message.setId(idGenerator.incrementAndGet());
 		sender.getSentMessages().add(message);
 		receiver.getReceivedMessages().add(message);
 		userGateway.updateUser(sender);
