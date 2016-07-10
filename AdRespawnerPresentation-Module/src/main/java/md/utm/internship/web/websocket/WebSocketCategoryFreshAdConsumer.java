@@ -62,7 +62,6 @@ public class WebSocketCategoryFreshAdConsumer implements FreshAdConsumer  {
 				Ad ad = decoder.decode(jsonAd, Ad.class);
 				if (categoryService.adDomainHasSubcategory(adDomainId, ad.getSubCategory().getId())) {
 					s.getAsyncRemote().sendText(jsonAd);
-					System.out.println("worked");
 				}
 			}
 		}

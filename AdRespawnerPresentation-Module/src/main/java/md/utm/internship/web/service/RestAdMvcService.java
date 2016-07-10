@@ -8,15 +8,19 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 import md.utm.internship.rest.client.AdResourceClient;
+import md.utm.internship.rest.client.RegionResourceClient;
 import md.utm.internship.rest.client.domain.Ad;
 import md.utm.internship.rest.client.domain.Photo;
+import md.utm.internship.rest.client.domain.Region;
 
 public class RestAdMvcService implements AdMvcService {
 	
 	private AdResourceClient adResourceClient;
+	private RegionResourceClient regionResourceClient;
 
-	public RestAdMvcService(AdResourceClient adResourceClient) {
+	public RestAdMvcService(AdResourceClient adResourceClient, RegionResourceClient regionResourceClient) {
 		this.adResourceClient = adResourceClient;
+		this.regionResourceClient = regionResourceClient;
 	}
 	
 	@Override
@@ -55,5 +59,20 @@ public class RestAdMvcService implements AdMvcService {
 			}
 		}
 		return photos;
+	}
+
+	@Override
+	public List<Region> getAllRegions() {
+		return regionResourceClient.getAllRegions();
+	}
+
+	@Override
+	public Region getRegionById(Long regionId) {
+		return regionResourceClient.getRegionById(regionId);
+	}
+
+	@Override
+	public Region createRegion(Region region) {
+		return regionResourceClient.createRegion(region);
 	}
 }

@@ -5,6 +5,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Region {
 
+	private Long id;
 	private String country;
 	private String municipality;
 
@@ -14,6 +15,14 @@ public class Region {
 	public Region(String country, String municipality) {
 		this.country = country;
 		this.municipality = municipality;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getCountry() {
@@ -65,6 +74,6 @@ public class Region {
 
 	@Override
 	public String toString() {
-		return "Region [country=" + country + ", municipality=" + municipality + "]";
+		return country + ", " + municipality;
 	}
 }

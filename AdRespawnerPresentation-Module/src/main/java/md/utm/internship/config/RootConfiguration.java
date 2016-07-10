@@ -11,6 +11,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import md.utm.internship.rest.client.AdDomainResourceClient;
 import md.utm.internship.rest.client.AdResourceClient;
 import md.utm.internship.rest.client.CategoryResourceClient;
+import md.utm.internship.rest.client.RegionResourceClient;
 import md.utm.internship.rest.client.UserResourceClient;
 import md.utm.internship.web.service.AdDomainMvcService;
 import md.utm.internship.web.service.AdMvcService;
@@ -59,14 +60,21 @@ public class RootConfiguration {
 	}
 	
 	@Bean
-	public AdMvcService adMvcService(AdResourceClient client) {
-		return new RestAdMvcService(client);
+	public AdMvcService adMvcService(AdResourceClient adClient, RegionResourceClient regionClient) {
+		return new RestAdMvcService(adClient, regionClient);
 	}
 	
 	@Bean(destroyMethod = "dispose")
 	public UserResourceClient userResourceClient() {
 		String resourceUrl = "http://localhost:8080/AdRespawnerWebService-Module/rest/users/";
 		UserResourceClient client = new UserResourceClient(resourceUrl);
+		return client;
+	}
+	
+	@Bean(destroyMethod = "dispose")
+	public RegionResourceClient regionResourceClient() {
+		String resourceUrl = "http://localhost:8080/AdRespawnerWebService-Module/rest/regions";
+		RegionResourceClient client = new RegionResourceClient(resourceUrl);
 		return client;
 	}
 	

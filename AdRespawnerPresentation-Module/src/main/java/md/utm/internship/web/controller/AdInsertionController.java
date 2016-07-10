@@ -35,6 +35,7 @@ public class AdInsertionController {
 		model.addAttribute("adDomainList", adDomainService.getAllAdDomains());
 		model.addAttribute("newAd", new Ad());
 		model.addAttribute("availableCurrencies", Currency.values());
+		model.addAttribute("regionList", adService.getAllRegions());
 		return "addAd";
 	}
 	

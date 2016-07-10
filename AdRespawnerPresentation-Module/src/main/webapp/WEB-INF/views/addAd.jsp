@@ -39,6 +39,8 @@
 			<input type="text" name="priceAmount" id="priceAmount" />
 			<form:select path="price" items="${availableCurrencies}" id="priceCurrency" /><br/>
 			
+			<form:select path="region" items="${regionList}" />
+			
 			<button id="addPhotoButton">Add photo</button>
 			<div id="fileChooserContainer"></div>
 		

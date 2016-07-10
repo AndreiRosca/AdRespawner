@@ -7,6 +7,7 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import md.utm.internship.model.Ad;
@@ -27,7 +28,11 @@ public class InMemoryAdGateway implements AdGateway {
 	private ConcurrentMap<Long, Ad> ads = new ConcurrentHashMap<>();
 	private AtomicLong idGenerator = new AtomicLong(0);
 	
-	public InMemoryAdGateway() {
+	private RegionGateway regionGateway;
+	
+	@Autowired
+	public InMemoryAdGateway(RegionGateway regionGateway) {
+		this.regionGateway = regionGateway;
 		Ad first = new Ad("AMD Athlon II-X2 245, 250, 255, 280", "AMD Athlon II-X2 245 - 550lei 2.9GHz, 2MB L2 Cache, TDP 65W, Socket AM2/AM2+/AM3 AMD Athlon II-X2 250 - 550lei 3.0GHz, 2MB L2 Cache, TDP 65W, Socket AM2/AM2+/AM3 AMD Athlon II-X2 255 - 550lei 3.1GHz, 2MB L2 Cache, TDP 65W, Socket AM2/AM2+/AM", new Price(BigDecimal.TEN, Currency.MDL), new Region("Moldova", "mun. Chisinau"));
 		SubCategory s1 = new SubCategory("Laptops", null);
 		s1.setId(40L);
@@ -54,6 +59,9 @@ public class InMemoryAdGateway implements AdGateway {
 		third.setAdAuthor(user);
 		first.setAdAuthor(user);
 		second.setAdAuthor(user);
+		first.setRegion(regionGateway.getRegionById(1L));
+		second.setRegion(regionGateway.getRegionById(2L));
+		third.setRegion(regionGateway.getRegionById(3L));
 		third.getCharacteristics().add(new AdCharacteristic("Manufacturer", LaptopManufacturer.APPLE.toString()));
 		third.getCharacteristics().add(new AdCharacteristic("Offer type", OfferType.SELL.toString()));
 	}
