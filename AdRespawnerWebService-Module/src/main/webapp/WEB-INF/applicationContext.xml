@@ -17,6 +17,7 @@
 	<jaxrs:server id="adRespawnerService" address="/">
 		<jaxrs:providers>
 			<bean class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider" />
+			<bean class="md.utm.internship.rest.filter.SecurityFilter" />
 		</jaxrs:providers>
 		<jaxrs:serviceBeans>
 			<ref bean="adDomainResource" />
