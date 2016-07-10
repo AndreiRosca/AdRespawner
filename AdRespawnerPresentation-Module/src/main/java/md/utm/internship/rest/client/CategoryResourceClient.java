@@ -21,7 +21,8 @@ public class CategoryResourceClient {
 		this.categoryResourceUrl = categoryResourceUrl;
 	}
 	
-	public List<Category> getAllCategories() {
+	public List<Category> getAllCategories(Long adDomainId) {
+		setAdDomainId(adDomainId);
 		return target.path("/categories")
 					 .request()
 					 .accept(MediaType.APPLICATION_JSON)

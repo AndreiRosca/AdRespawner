@@ -16,8 +16,7 @@ public class RestCategoryMvcService implements CategoryMvcService {
 	
 	@Override
 	public List<Category> getAllCategories(Long adDomainId) {
-		categoryResource.setAdDomainId(adDomainId);
-		return categoryResource.getAllCategories();
+		return categoryResource.getAllCategories(adDomainId);
 	}
 
 	@Override

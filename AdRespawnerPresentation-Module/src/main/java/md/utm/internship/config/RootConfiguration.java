@@ -5,6 +5,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
+import org.springframework.context.annotation.Scope;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import md.utm.internship.rest.client.AdDomainResourceClient;
@@ -45,6 +46,7 @@ public class RootConfiguration {
 	}
 	
 	@Bean
+	@Scope("prototype")
 	public CategoryMvcService categoryMvcService(CategoryResourceClient categoryResource) {
 		return new RestCategoryMvcService(categoryResource);
 	}
