@@ -3,6 +3,10 @@ package md.utm.internship.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -10,8 +14,11 @@ import javax.xml.bind.annotation.XmlTransient;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @XmlRootElement
+@Entity
 public class AdDomain {
 
+	@Id
+	@GeneratedValue
 	private Long id;
 	
 	@XmlElement
@@ -19,6 +26,7 @@ public class AdDomain {
 	
 	@XmlTransient
 	@JsonIgnore
+	@OneToMany
 	private List<Category> categories = new ArrayList<>();
 
 	public AdDomain() {

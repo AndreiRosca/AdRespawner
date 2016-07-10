@@ -2,12 +2,17 @@ package md.utm.internship.model;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Embeddable;
+import javax.persistence.Enumerated;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
+@Embeddable
 public class Price {
 
 	private BigDecimal amount;
+	
+	@Enumerated
 	private Currency currency;
 
 	public Price() {

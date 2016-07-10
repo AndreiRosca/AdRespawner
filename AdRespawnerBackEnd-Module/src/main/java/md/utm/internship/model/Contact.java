@@ -1,8 +1,10 @@
 package md.utm.internship.model;
 
+import javax.persistence.Embeddable;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
+@Embeddable
 public class Contact {
 
 	private String countryCode;

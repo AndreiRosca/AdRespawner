@@ -1,18 +1,27 @@
 package md.utm.internship.model;
 
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @XmlRootElement
+@Entity
 public class Photo {
 
+	@Id
+	@GeneratedValue
 	private Long id;
 	private String fileSystemPath;
 	
 	@XmlTransient
 	@JsonIgnore
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Ad owningAd;
 
 	public Photo() {

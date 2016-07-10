@@ -1,11 +1,14 @@
 package md.utm.internship.model;
 
+import javax.persistence.Embeddable;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @XmlRootElement
+@Embeddable
 public class AdCharacteristic {
 
 	private String name;
@@ -13,6 +16,7 @@ public class AdCharacteristic {
 	
 	@XmlTransient
 	@JsonIgnore
+	@Transient
 	private SubCategory subCategory;
 
 	public AdCharacteristic() {

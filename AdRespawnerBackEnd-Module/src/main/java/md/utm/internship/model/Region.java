@@ -1,10 +1,16 @@
 package md.utm.internship.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
+@Entity
 public class Region {
 
+	@Id
+	@GeneratedValue
 	private Long id;
 	private String country;
 	private String municipality;

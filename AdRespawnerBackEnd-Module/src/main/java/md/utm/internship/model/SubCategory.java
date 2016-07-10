@@ -3,23 +3,34 @@ package md.utm.internship.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @XmlRootElement
+@Entity
 public class SubCategory {
 
+	@Id
+	@GeneratedValue
 	private Long id;
 	private String name;
 	
 	@XmlTransient
 	@JsonIgnore
+	@OneToMany
 	private List<Ad> ads = new ArrayList<>();
 	
 	@XmlTransient
 	@JsonIgnore
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Category category;
 
 	public SubCategory() {

@@ -35,5 +35,13 @@
 	<bean id="restAdResource" class="md.utm.internship.rest.AdResource" />
 	<bean id="userResource" class="md.utm.internship.rest.UserResource" />
 	<bean id="regionResource" class="md.utm.internship.rest.RegionResource"></bean>
+	
+	<bean id="entityManagerFactory" class="javax.persistence.Persistence"
+		factory-method="createEntityManagerFactory">
+		<constructor-arg value="AdRespawnerBackEnd-Module" />
+	</bean>
+	<bean id="entityManager" class="javax.persistence.EntityManager"
+		factory-bean="entityManagerFactory" factory-method="createEntityManager">
+	</bean>
 
 </beans>

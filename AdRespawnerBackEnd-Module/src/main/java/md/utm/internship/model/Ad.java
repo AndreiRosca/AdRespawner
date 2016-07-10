@@ -4,20 +4,44 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
+@Entity
 public class Ad {
 
+	@Id
+	@GeneratedValue
 	private Long id;
 	private String title;
 	private String description;
 	private Date postingDate;
+	
+	@OneToOne(fetch = FetchType.EAGER)
 	private User adAuthor;
+	
+	@Embedded
 	private Price price;
+	
+	@OneToOne(fetch = FetchType.EAGER)
 	private Region region;
+	
+	@OneToMany
 	private List<Photo> photos = new ArrayList<>();
+	
+	@ManyToOne(fetch = FetchType.EAGER)
 	private SubCategory subCategory;
+	
+	@ElementCollection
 	private List<AdCharacteristic> characteristics = new ArrayList<>();
 
 	public Ad() {

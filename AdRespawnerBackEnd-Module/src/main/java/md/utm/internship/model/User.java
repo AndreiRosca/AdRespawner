@@ -5,14 +5,26 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @XmlRootElement
+@Entity
 public class User {
 
+	@Id
+	@GeneratedValue
 	private Long id;
 	private String email;
 	private String login;
@@ -20,20 +32,29 @@ public class User {
 	private String firstName;
 	private String lastName;
 	private Date birthDate;
+	
+	@Enumerated
 	private Sex sex;
+	
+	@ElementCollection(fetch = FetchType.EAGER)
 	private Set<Contact> contacts = new LinkedHashSet<>();
 	
 	@XmlTransient
 	@JsonIgnore
+	@OneToMany(fetch = FetchType.EAGER)
 	private Set<Message> receivedMessages = new LinkedHashSet<>();
 	
 	@XmlTransient
 	@JsonIgnore
+	@OneToMany(fetch = FetchType.EAGER)
 	private Set<Message> sentMessages = new LinkedHashSet<>();
+	
+	@OneToOne(fetch = FetchType.EAGER)
 	private Photo photo;
 	
 	@XmlTransient
 	@JsonIgnore
+	@ManyToMany(fetch = FetchType.EAGER)
 	private Set<Ad> postedAds = new HashSet<>();
 
 	public User() {

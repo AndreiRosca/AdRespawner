@@ -2,13 +2,25 @@ package md.utm.internship.model;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
+@Entity
 public class Message {
 
+	@Id
+	@GeneratedValue
 	private Long id;
+	
+	@OneToOne(fetch = FetchType.EAGER)
 	private User sender;
+
+	@OneToOne(fetch = FetchType.EAGER)
 	private User receiver;
 	private String message;
 	private Date postingDate = new Date();

@@ -13,8 +13,12 @@ import md.utm.internship.web.service.AdMvcService;
 @RequestMapping("/ads/{id}")
 public class AdController {
 	
-	@Autowired
 	private AdMvcService adService;
+	
+	@Autowired
+	public AdController(AdMvcService adService) {
+		this.adService = adService;
+	}
 
 	@GetMapping
 	public String showAdList(Model model, @PathVariable("id") Long id) {
@@ -27,5 +31,9 @@ public class AdController {
 	public String viewAd(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("ad", adService.getAd(id));
 		return "viewAd";
+	}
+	
+	public void setAdMvcService(AdMvcService adService) {
+		this.adService = adService;
 	}
 }

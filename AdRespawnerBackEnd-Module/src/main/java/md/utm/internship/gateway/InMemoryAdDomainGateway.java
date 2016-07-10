@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import md.utm.internship.model.AdDomain;
 
-@Repository
+//@Repository
 public class InMemoryAdDomainGateway implements AdDomainGateway {
 	
 	private static ConcurrentMap<Long, AdDomain> adDomains = new ConcurrentHashMap<>();
