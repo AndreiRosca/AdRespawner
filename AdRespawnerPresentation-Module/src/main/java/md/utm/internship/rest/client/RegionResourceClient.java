@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.ClientRequestFilter;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
@@ -16,7 +17,8 @@ public class RegionResourceClient {
 	private Client client = ClientBuilder.newClient();
 	private WebTarget target;
 	
-	public RegionResourceClient(String resourceUrl) {
+	public RegionResourceClient(String resourceUrl, ClientRequestFilter authFilter) {
+		client = client.register(authFilter);
 		target = client.target(resourceUrl);
 	}
 	
