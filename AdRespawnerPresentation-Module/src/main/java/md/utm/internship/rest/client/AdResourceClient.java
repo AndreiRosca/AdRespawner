@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.ClientRequestFilter;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
@@ -17,7 +18,8 @@ public class AdResourceClient {
 	private WebTarget target;
 	private String resourceUrl;
 	
-	public AdResourceClient(String resourceUrl) {
+	public AdResourceClient(String resourceUrl, ClientRequestFilter authFilter) {
+		client = client.register(authFilter);
 		this.resourceUrl = resourceUrl;
 	}
 	

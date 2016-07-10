@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.ClientRequestFilter;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
@@ -17,7 +18,8 @@ public class CategoryResourceClient {
 	private WebTarget target;
 	private String categoryResourceUrl;
 	
-	public CategoryResourceClient(String categoryResourceUrl) {
+	public CategoryResourceClient(String categoryResourceUrl, ClientRequestFilter authFilter) {
+		client = client.register(authFilter);
 		this.categoryResourceUrl = categoryResourceUrl;
 	}
 	

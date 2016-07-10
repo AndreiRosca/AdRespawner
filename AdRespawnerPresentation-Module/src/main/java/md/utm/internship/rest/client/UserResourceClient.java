@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.ClientRequestFilter;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
@@ -19,7 +20,8 @@ public class UserResourceClient {
 	private Client client = ClientBuilder.newClient();
 	private WebTarget target;
 	
-	public UserResourceClient(String resourceUrl) {
+	public UserResourceClient(String resourceUrl, ClientRequestFilter authFilter) {
+		client = client.register(authFilter);
 		target = client.target(resourceUrl);
 	}
 	
