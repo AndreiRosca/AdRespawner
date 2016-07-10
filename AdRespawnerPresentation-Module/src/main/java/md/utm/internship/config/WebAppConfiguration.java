@@ -19,11 +19,13 @@ import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
+import md.utm.internship.web.consumer.FreshAdConsumer;
 import md.utm.internship.web.converter.StringToContactConverter;
 import md.utm.internship.web.converter.StringToPriceConverter;
 import md.utm.internship.web.converter.StringToSubCategoryConverter;
 import md.utm.internship.web.listener.FreshAdListener;
 import md.utm.internship.web.service.CategoryMvcService;
+import md.utm.internship.web.websocket.WebSocketFreshAdConsumer;
 
 @Configuration
 @EnableWebMvc
@@ -57,8 +59,13 @@ public class WebAppConfiguration extends WebMvcConfigurerAdapter implements Appl
 	}
 	
 	@Bean
-	public FreshAdListener freshAdListener() {
-		return new FreshAdListener(null);
+	public FreshAdConsumer webSocketFreshAdConsumer() {
+		return new WebSocketFreshAdConsumer();
+	}
+	
+	@Bean
+	public FreshAdListener freshAdListener(FreshAdConsumer consumer) {
+		return new FreshAdListener(consumer);
 	}
 	
 	@Override

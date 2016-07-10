@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configure id='webapp-context' class="org.eclipse.jetty.webapp.WebAppContext">
+	<New id="connectionFactory" class="org.eclipse.jetty.plus.jndi.Resource">
+		<Arg>
+			<Ref id='webapp-context' />
+		</Arg>
+		<Arg>jms/ConnectionFactory</Arg>
+		<Arg>
+			<New class="org.apache.activemq.ActiveMQConnectionFactory">
+				<Arg>tcp://localhost:61616</Arg>
+			</New>
+		</Arg>
+	</New>
+	<New id="freshAdsTopic" class="org.eclipse.jetty.plus.jndi.Resource">
+		<Arg>jms/freshAdsTopic</Arg>
+		<Arg>
+			<New class="org.apache.activemq.command.ActiveMQTopic">
+				<Arg>EM_FRESH_ADS.T</Arg>
+			</New>
+		</Arg>
+	</New>
+</Configure>

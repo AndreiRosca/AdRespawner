@@ -10,8 +10,8 @@ import javax.jms.TopicConnection;
 import javax.jms.TopicConnectionFactory;
 import javax.jms.TopicSession;
 import javax.jms.TopicSubscriber;
-
-import org.apache.activemq.ActiveMQConnectionFactory;
+import javax.naming.Context;
+import javax.naming.InitialContext;
 
 import md.utm.internship.web.consumer.FreshAdConsumer;
 
@@ -25,15 +25,16 @@ public class FreshAdListener implements MessageListener {
 	
 	public FreshAdListener(FreshAdConsumer consumer) {
 		this.consumer = consumer;
-		TopicConnectionFactory cf = new ActiveMQConnectionFactory("tcp://localhost:61616");
 		try {
+			Context ctx = new InitialContext();
+			TopicConnectionFactory cf = (TopicConnectionFactory) ctx.lookup("java:/comp/env/jms/ConnectionFactory");
 			connection = cf.createTopicConnection();
 			session = connection.createTopicSession(false, Session.AUTO_ACKNOWLEDGE);
 			connection.start();
-			freshAdsTopic = session.createTopic("EM_FRESH_ADS.T");
+			freshAdsTopic = (Topic) ctx.lookup("java:/comp/env/jms/freshAdsTopic");
 			subscriber = session.createSubscriber(freshAdsTopic);
 			subscriber.setMessageListener(this);
-		} catch (JMSException e) {
+		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}
