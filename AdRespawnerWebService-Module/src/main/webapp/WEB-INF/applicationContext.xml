@@ -37,11 +37,11 @@
 	<bean id="regionResource" class="md.utm.internship.rest.RegionResource"></bean>
 	
 	<bean id="entityManagerFactory" class="javax.persistence.Persistence"
-		factory-method="createEntityManagerFactory">
+		factory-method="createEntityManagerFactory" destroy-method="close">
 		<constructor-arg value="AdRespawnerBackEnd-Module" />
 	</bean>
 	<bean id="entityManager" class="javax.persistence.EntityManager"
-		factory-bean="entityManagerFactory" factory-method="createEntityManager">
+		factory-bean="entityManagerFactory" factory-method="createEntityManager" destroy-method="close">
 	</bean>
 
 </beans>

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import md.utm.internship.model.Category;
 import md.utm.internship.model.SubCategory;
 
-@Repository
+//@Repository
 public class InMemoryCategoryGateway implements CategoryGateway {
 	
 	private ConcurrentMap<Long, Category> categories = new ConcurrentHashMap<>();
