@@ -20,6 +20,9 @@
 		</ul>
 		<br/>
 		<table id="freshAdsList">
+			<tr>
+				<th>Title</th><th>Category</th><th>Posting date</th>
+			</tr>
 		</table>
 	</div>
 </body>
