@@ -14,6 +14,7 @@ import md.utm.internship.rest.client.AdDomainResourceClient;
 import md.utm.internship.rest.client.AdResourceClient;
 import md.utm.internship.rest.client.CategoryResourceClient;
 import md.utm.internship.rest.client.RegionResourceClient;
+import md.utm.internship.rest.client.RestServiceAuthenticatingFilter;
 import md.utm.internship.rest.client.UserResourceClient;
 import md.utm.internship.rest.client.filter.RestServiceAuthenticatingFilter;
 import md.utm.internship.web.service.AdDomainMvcService;
