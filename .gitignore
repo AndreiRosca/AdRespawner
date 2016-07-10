@@ -4,3 +4,5 @@
 */*.classpath
 target
 */*target
+*.jpg
+*.png
