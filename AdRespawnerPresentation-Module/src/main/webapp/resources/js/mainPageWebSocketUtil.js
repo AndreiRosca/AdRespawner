@@ -4,7 +4,6 @@
 		
 		webSocket.onmessage = function (freshAdAsJSON) {
 			var freshAd = JSON.parse(freshAdAsJSON.data);
-			console.log(freshAd);
 			insertFreshAdIntoList(freshAd);
 		};
 	});

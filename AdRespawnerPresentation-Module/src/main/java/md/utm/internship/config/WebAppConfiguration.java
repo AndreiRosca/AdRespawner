@@ -23,8 +23,11 @@ import md.utm.internship.web.consumer.FreshAdConsumer;
 import md.utm.internship.web.converter.StringToContactConverter;
 import md.utm.internship.web.converter.StringToPriceConverter;
 import md.utm.internship.web.converter.StringToSubCategoryConverter;
+import md.utm.internship.web.decoder.JacksonJsonDecoder;
+import md.utm.internship.web.decoder.JsonDecoder;
 import md.utm.internship.web.listener.FreshAdListener;
 import md.utm.internship.web.service.CategoryMvcService;
+import md.utm.internship.web.websocket.WebSocketCategoryFreshAdConsumer;
 import md.utm.internship.web.websocket.WebSocketFreshAdConsumer;
 
 @Configuration
@@ -59,13 +62,28 @@ public class WebAppConfiguration extends WebMvcConfigurerAdapter implements Appl
 	}
 	
 	@Bean
-	public FreshAdConsumer webSocketFreshAdConsumer() {
-		return new WebSocketFreshAdConsumer();
+	public JsonDecoder jacksonJsonDecoder() {
+		return new JacksonJsonDecoder();
+	}
+	
+	@Bean
+	public FreshAdConsumer webSocketFreshAdConsumer(FreshAdListener listener) {
+		FreshAdConsumer consumer = new WebSocketFreshAdConsumer();
+		listener.addConsumer(consumer);
+		return consumer;
+	}
+	
+	@Bean
+	public FreshAdConsumer webSocketCategoryFreshAdConsumer(JsonDecoder decoder, 
+			CategoryMvcService service, FreshAdListener listener) {
+		FreshAdConsumer consumer = new WebSocketCategoryFreshAdConsumer(decoder, service);
+		listener.addConsumer(consumer);
+		return consumer;
 	}
 	
 	@Bean(destroyMethod = "dispose")
-	public FreshAdListener freshAdListener(FreshAdConsumer consumer) {
-		return new FreshAdListener(consumer);
+	public FreshAdListener freshAdListener() {
+		return new FreshAdListener();
 	}
 	
 	@Override

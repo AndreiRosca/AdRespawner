@@ -27,4 +27,13 @@ public class RestCategoryMvcService implements CategoryMvcService {
 										   .findAny()
 										   .orElseThrow(() -> new RuntimeException("Didn't find the subcategory."));
 	}
+
+	@Override
+	public boolean adDomainHasSubcategory(Long adDomainId, Long subCategoryId) {
+		try {
+			return getSubcategoryById(adDomainId, subCategoryId) != null;
+		} catch (Exception e) {
+			return false;
+		}
+	}
 }

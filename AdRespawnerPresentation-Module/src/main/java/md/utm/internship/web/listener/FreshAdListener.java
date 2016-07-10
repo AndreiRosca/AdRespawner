@@ -1,5 +1,8 @@
 package md.utm.internship.web.listener;
 
+import java.util.Set;
+import java.util.concurrent.CopyOnWriteArraySet;
+
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
@@ -21,10 +24,9 @@ public class FreshAdListener implements MessageListener {
 	private TopicSession session;
 	private Topic freshAdsTopic;
 	private TopicSubscriber subscriber;
-	private FreshAdConsumer consumer;
-	
-	public FreshAdListener(FreshAdConsumer consumer) {
-		this.consumer = consumer;
+	private Set<FreshAdConsumer> consumers = new CopyOnWriteArraySet<>();
+
+	public FreshAdListener() {
 		try {
 			Context ctx = new InitialContext();
 			TopicConnectionFactory cf = (TopicConnectionFactory) ctx.lookup("java:/comp/env/jms/ConnectionFactory");
@@ -38,7 +40,16 @@ public class FreshAdListener implements MessageListener {
 			throw new RuntimeException(e);
 		}
 	}
-	
+
+	public FreshAdListener(Set<FreshAdConsumer> consumers) {
+		this();
+		this.consumers = consumers;
+	}
+
+	public void addConsumer(FreshAdConsumer consumer) {
+		consumers.add(consumer);
+	}
+
 	public void dispose() {
 		try {
 			connection.close();
@@ -51,7 +62,8 @@ public class FreshAdListener implements MessageListener {
 	public void onMessage(Message message) {
 		TextMessage textMessage = (TextMessage) message;
 		try {
-			consumer.consumeFreshAd(textMessage.getText());
+			for (FreshAdConsumer consumer : consumers)
+				consumer.consumeFreshAd(textMessage.getText());
 		} catch (JMSException e) {
 			throw new RuntimeException(e);
 		}

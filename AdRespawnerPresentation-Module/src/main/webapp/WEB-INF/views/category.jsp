@@ -7,6 +7,7 @@
 	<title>AdRespawner - categories</title>
 	<meta charset="utf-8" />
 	<script src="<spring:url value="/resources/js/lib/jquery-3.0.0.js" />"></script>
+	<script src="<spring:url value="/resources/js/categoryPageWebSocketUtil.js" />"></script>
 </head>
 <body>
 	<h1>Welcome to AdRespawner!</h1>
@@ -24,6 +25,12 @@
 			</li>
 		</c:forEach>
 	</ul>
+	<br/>
+	<table id="freshAdsList">
+		<tr>
+			<th>Title</th><th>Category</th><th>Posting date</th>
+		</tr>
+	</table>
 	<a href="<spring:url value="/" />">Back</a>
 </body>
 </html>
