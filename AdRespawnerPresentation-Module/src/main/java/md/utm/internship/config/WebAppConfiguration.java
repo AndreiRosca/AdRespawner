@@ -63,7 +63,7 @@ public class WebAppConfiguration extends WebMvcConfigurerAdapter implements Appl
 		return new WebSocketFreshAdConsumer();
 	}
 	
-	@Bean
+	@Bean(destroyMethod = "dispose")
 	public FreshAdListener freshAdListener(FreshAdConsumer consumer) {
 		return new FreshAdListener(consumer);
 	}

@@ -38,6 +38,14 @@ public class FreshAdListener implements MessageListener {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	public void dispose() {
+		try {
+			connection.close();
+		} catch (JMSException e) {
+			throw new RuntimeException(e);
+		}
+	}
 
 	@Override
 	public void onMessage(Message message) {
