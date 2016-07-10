@@ -24,12 +24,16 @@ public class WebSocketCategoryFreshAdConsumer implements FreshAdConsumer  {
 	private static Set<Session> peers = Collections.synchronizedSet(new HashSet<>());
 	
 	private Logger logger = Logger.getLogger(getClass());
-	private JsonDecoder decoder;
-	private CategoryMvcService categoryService;
+	private static JsonDecoder decoder;
+	private static CategoryMvcService categoryService;
+	
+	public WebSocketCategoryFreshAdConsumer() {
+		
+	}
 	
 	public WebSocketCategoryFreshAdConsumer(JsonDecoder decoder, CategoryMvcService categoryService) {
-		this.decoder = decoder;
-		this.categoryService = categoryService;
+		WebSocketCategoryFreshAdConsumer.decoder = decoder;
+		WebSocketCategoryFreshAdConsumer.categoryService = categoryService;
 	}
 	
 	@OnOpen
@@ -52,7 +56,6 @@ public class WebSocketCategoryFreshAdConsumer implements FreshAdConsumer  {
 
 	@Override
 	public void consumeFreshAd(String jsonAd) {
-		System.out.println(jsonAd);
 		for (Session s : peers) {
 			if (s.isOpen()) {
 				Long adDomainId = (Long) s.getUserProperties().get("chosenAdDomainId");
